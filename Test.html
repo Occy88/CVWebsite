@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <h1>Login</h1>
+    Email:<br>
+    <input type="text" id="Email">
+    <br>
+    Password:<br>
+    <input type="password" id="Password">
+    <br>
+    <button onclick="toString();document.getElementById('Email').value = '';document.getElementById('Password').value = ''">Pass to server</button>
+    <script type="text/javascript">
+    function toString(){
+      var usr=document.getElementById('Email').value;
+      var pass=document.getElementById('Password').value;
+
+      credentials = [
+        {"Email":""},
+        {"Password":""}
+      ];
+
+      credentials[0].Email = usr;
+      credentials[1].Password = pass;
+
+      credentials = JSON.stringify(credentials);
+
+      console.log(credentials);
+
+      var sendData = new XMLHttpRequest();
+      sendData.open(***ENTER SERVER INFO HERE***);
+
+    };
+    </script>
+
+
+  </body>
+  </html>
