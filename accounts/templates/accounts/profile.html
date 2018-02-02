@@ -1,0 +1,15 @@
+{% extends 'accounts/templates/base.html' %}
+
+
+{% block head %}
+<title>Profile</title>
+{% endblock %}
+
+{% block body %}
+<h3>{{user}}</h3>
+<h3>{{user.first_name}}</h3>
+<h3>{{user.last_name}}</h3>
+<h3>{{user.email}}</h3>
+
+{% endblock %}
+

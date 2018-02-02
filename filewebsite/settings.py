@@ -47,7 +47,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'folders.apps.FoldersConfig',
+
     'accounts.apps.AccountsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -72,7 +72,7 @@ ROOT_URLCONF = 'filewebsite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['C:/Users/octav/webProjects/filerepo/filewebsite/'],
+        'DIRS': ['C:/Users/octav/webProjects/filerepo/filewebsite/CS1813_2018_03/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
