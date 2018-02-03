@@ -5,13 +5,11 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<link rel = "stylesheet" type="text/css" href="/accounts/templates/style.css">
 <head>
 
     {% block head %}
     <meta charset="UTF-8">
     <title>Title</title>
-
     <h1>Base</h1>
     {% endblock %}
 </head>
@@ -31,7 +29,7 @@
           <a class="nav-link" href="/account/profile/edit/">Edit Profile</a>
           <a class="nav-link" href="/account/logout/">Logout</a>
           <a class="nav-link" href="/account/change-password/">change password</a>
-
+          <a class="nav-link" href="/account/password_reset/">Reset Password</a>
           <a class="nav-item nav-link disabled" href="#">Disabled</a>
         </div>
             {% else %}
@@ -39,7 +37,6 @@
           <a class="nav-link" href="/account/login/">Login</a>
           <a class="nav-link" href="/account/register/">Register</a>
           <a class="nav-item nav-link disabled" href="#">Disabled</a>
-          <a class="nav-link" href="/account/password_reset/">Reset Password</a>
 
         </div>
           {%endif%}
