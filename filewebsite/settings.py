@@ -143,9 +143,11 @@ STATIC_URL = '/static/'
 LOGIN_URL='/account/login/'
 LOGIN_REDIRECT_URL='/account/'
 LOGIN_EXEMPT_URLS={
-    r'^account/logout/$',
     r'^account/register/$',
-    r'^account/reset-password/$'
+    r'^account/password_reset/$',#reset page
+    r'^account/password_reset/done/$',#form submited
+    r'^account/password_reset/complete/$',#form completedd
+    r'^account/password_reset/confirm/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$'#confirmed page
 
 }
 

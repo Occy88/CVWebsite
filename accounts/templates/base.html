@@ -5,7 +5,6 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<link rel = "stylesheet" type="text/css" href="/accounts/templates/style.css">
 <head>
 
     {% block head %}
@@ -23,23 +22,23 @@
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand" href="/account/login/">Navbar</a>
+      <a class="navbar-brand" href="{% url 'accounts:login' %}">Navbar</a>
       <div class="navbar-collapse collapse" id="navbarNavAltMarkup">
             {% if user.is_authenticated %}
         <div class="navbar-nav">
-          <a class="nav-link" href="/account/profile/">Home <span class="sr-only">(current)</span></a>
-          <a class="nav-link" href="/account/profile/edit/">Edit Profile</a>
-          <a class="nav-link" href="/account/logout/">Logout</a>
-          <a class="nav-link" href="/account/change-password/">change password</a>
+          <a class="nav-link" href="{% url 'accounts:view_profile' %}">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="{% url 'accounts:edit_profile' %}">Edit Profile</a>
+          <a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a>
+          <a class="nav-link" href="{% url 'accounts:change_password' %}">change password</a>
 
           <a class="nav-item nav-link disabled" href="#">Disabled</a>
         </div>
             {% else %}
           <div class="navbar-nav">
-          <a class="nav-link" href="/account/login/">Login</a>
-          <a class="nav-link" href="/account/register/">Register</a>
+          <a class="nav-link" href="{% url 'accounts:login' %}">Login</a>
+          <a class="nav-link" href="{% url 'accounts:register' %}">Register</a>
           <a class="nav-item nav-link disabled" href="#">Disabled</a>
-          <a class="nav-link" href="/account/password_reset/">Reset Password</a>
+          <a class="nav-link" href="{% url 'accounts:password_reset' %}">Reset Password</a>
 
         </div>
           {%endif%}
