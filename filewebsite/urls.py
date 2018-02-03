@@ -23,6 +23,7 @@ urlpatterns = [
    # url(r'$', views.login_redirect, name='login_redirect'),
 
     path('admin/', admin.site.urls),
-    path('account/',include('accounts.urls'))
+    path('account/',include('accounts.urls')),
+    path('folders/',include('folders.urls'))
 
 ]

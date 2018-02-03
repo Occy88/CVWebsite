@@ -6,7 +6,7 @@ from . import views
 from django.conf.urls import url, include
 app_name='accounts'
 urlpatterns = [
-    #/files/
+    #/account/
 
     path('', views.home, name='accounts'),
 

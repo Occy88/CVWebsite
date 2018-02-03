@@ -49,6 +49,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
 
     'accounts.apps.AccountsConfig',
+    'folders.apps.FoldersConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -140,6 +141,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_URL =  '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 LOGIN_URL='/account/login/'
 LOGIN_REDIRECT_URL='/account/'
 LOGIN_EXEMPT_URLS={
