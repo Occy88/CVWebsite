@@ -8,6 +8,7 @@ class DocumentForm(forms.Form):
     class Meta:
         fields=[
             'docfile'
+
         ]
     docfile = forms.FileField(
         label='Select a file',
