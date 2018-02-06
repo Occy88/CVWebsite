@@ -2,10 +2,10 @@ from django.shortcuts import render
 from django.template import RequestContext
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
-from django.shortcuts import reverse
+from django.shortcuts import reverse,redirect
 
-from home.models import Document
-from home.forms import DocumentForm
+from home.models import Document,Group
+from home.forms import DocumentForm, GroupRegistrationForm
 
 def list(request):
     # Handle file upload
@@ -24,11 +24,21 @@ def list(request):
     documents = Document.objects.all()
     user=User.objects.all()
     cu=request.user
-    context = {'documents':documents,'form':form,'user':user,'cu':cu}
+    group=Group.objects.all()
+    context = {'documents':documents,'form':form,'user':user,'cu':cu,'group':group}
     # Render list page with the documents and the form
     return render(
         request,'home/templates/home.html',context
     )
+def groupregister(request):
+    if request.method == 'POST':
+        form = GroupRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
 
+            return redirect('/home')
+    else:
+        form = GroupRegistrationForm()
+    return render(request, 'home/templates/GroupRegister.html', {'form': form})
 def index(request):
     return render('myapp/index.html')
