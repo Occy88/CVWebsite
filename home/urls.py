@@ -6,10 +6,10 @@ from . import views
 from django.views.generic import RedirectView
 from django.contrib import admin
 # admin.autodiscover()
-app_name='folders'
+app_name='home'
 
 urlpatterns = [
-    path('', views.list, name='folders'),
+    path('', views.list, name='home'),
     url(r'^list/$', views.list, name='list'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
