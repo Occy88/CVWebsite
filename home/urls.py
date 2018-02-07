@@ -15,6 +15,6 @@ urlpatterns = [
     url(r'^group_register/$',views.group_register,name='group_register'),
     url(r'^group_list/(?P<id>\d+)/edit/$', views.group_edit, name='group_edit'),
     url(r'^group_list/(?P<id>\d+)/$', views.group_detail, name='group_detail'),
-    url(r'^group_list/(?P<id>\d+)/delete$', views.group_delete, name='group_delete'),
+    url(r'^group_list/(?P<id>\d+)/delete/$', views.group_delete, name='group_delete'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
