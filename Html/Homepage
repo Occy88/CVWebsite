@@ -1,0 +1,49 @@
+<html>
+<head>
+<title> File repository Homepage </title>
+    <meta charset="utf-8">
+    <link rel = "stylesheet" type="text/css" href="style.css">
+</head>
+    <body class="body_homepage" >
+        <ul class = "nav">
+            <li><a href= "#">Home</a></li>
+            <li><a href= "#">Groups</a></li>
+            <li><a href= "#">My Files</a></li>
+            <li><a href= "#">extra</a></li>
+        </ul>
+          <body class="homepage_table">
+              <table align = "center">
+                  <tr>
+                      <td  >
+                          <div class= "upload">
+                              <img src ="upload.png" class="pic">
+                              <a href= "#">Upload</a>
+                              
+                          </div>
+                      </td>
+                      
+                      <td>
+                              <div class= "settings">
+                              <img src ="settings.png" class="pic">
+                                  <a href= "#">Settings</a>
+                          </div>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td>
+                              <div class= "Groups">
+                              <img src ="groups.png" class="pic">
+                                  <a href= "#">My Groups</a>
+                          </div>
+                      </td>
+                      <td>
+                              <div class= "Myprofile">
+                        <img src ="UserIcon.png" class="pic">
+                                  <a href= "#">Profile</a>
+                          </div>
+                      </td>
+                  </tr>
+              </table>
+        </body>
+    </body>
+</html>
