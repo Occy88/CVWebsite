@@ -24,21 +24,30 @@ def list(request):
     documents = Document.objects.all()
     user=User.objects.all()
     cu=request.user
-    group=Group.objects.all()
-    context = {'documents':documents,'form':form,'user':user,'cu':cu,'group':group}
+
+    context = {'documents':documents,'form':form,'user':user,'cu':cu}
     # Render list page with the documents and the form
     return render(
         request,'home/templates/home.html',context
     )
+
+def grouplist(request):
+    groups = Group.objects.all()
+
+    context = {'groups': groups}
+    return render(
+        request, 'home/templates/home_groups.html', context
+    )
+
 def groupregister(request):
     if request.method == 'POST':
         form = GroupRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
 
-            return redirect('/home')
+            return HttpResponseRedirect(reverse('home:group_list'))
     else:
         form = GroupRegistrationForm()
-    return render(request, 'home/templates/GroupRegister.html', {'form': form})
+    return render(request, 'home/templates/home_groups_create.html', {'form': form})
 def index(request):
     return render('myapp/index.html')

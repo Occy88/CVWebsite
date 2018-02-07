@@ -1,36 +1,19 @@
 {% extends 'home/templates/base.html' %}
 {% block head %}
-<title>Home</title>
+<title>Groups list</title>
 {% endblock %}
 {%block body%}
         <!-- List of uploaded documents -->
-        {% if documents %}
-                <ul>
-                {% for document in documents %}
-                        <li><a href="{{ document.docfile.url }}">{{ document.docfile.name }}
-                        <img src="{{ document.docfile.url }}" alt="{{ document.docfile.name }}">
-                        </a></li>
-                {% endfor %}
-                {% for user in user.objects.all %}
-                <li><a href="{{ document.docfile.url }}">{{user.id }}
+        <h1>Groups:</h1>
+        {% for g in groups %}
 
-                </a></li>
-                {% endfor %}
-                </ul>
-        {% else %}
-                <p>No documents.</p>
-        {% endif %}
+                <h3>group name:{{g.name}}</h3>
+                <h3>member name:{{g.members}}</h3>
+                {%for m in g.members.all%}
+                        <h4>members: {{m.first_name}} </h4>
 
-        <!-- Upload form. Note enctype attribute! -->
-        <form action="{% url 'home:list' %}" method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                <p>{{ form.non_field_errors }}</p>
-                <p>{{ form.docfile.label_tag }} </p>
-                <p>
-                        {{ form.docfile.errors }}
-                        {{ form.docfile }}
-                </p>
-                <p><input type="submit" value="Upload" /></p>
-        </form>
+                {% endfor%}
+
+        {% endfor %}
 
 {%endblock%}

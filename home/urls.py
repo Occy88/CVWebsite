@@ -11,6 +11,7 @@ app_name='home'
 urlpatterns = [
     path('', views.list, name='home'),
     url(r'^list/$', views.list, name='list'),
+    url(r'^group_list/$', views.grouplist, name='group_list'),
     url(r'^group_register/$',views.groupregister,name='group_register'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
