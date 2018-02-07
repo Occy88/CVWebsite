@@ -14,10 +14,7 @@ from django.contrib.auth.models import User
 # Create your views here.
 
 def home(request):
-    numbers= {1,2,3,4,5}
-    name= 'Octavio'
-    args={'myName': name}
-    return render(request, 'accounts/templates/registration/home.html',args)
+    return redirect(request, 'home:list')
 def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)

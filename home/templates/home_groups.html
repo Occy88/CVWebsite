@@ -8,9 +8,11 @@
         {% for g in groups %}
 
                 <h3>group name:{{g.name}}</h3>
+                <a href="{{g.id}}/">group info</a>
+                <h3>group id:{{g.id}}</h3>
                 <h3>member name:{{g.members}}</h3>
                 {%for m in g.members.all%}
-                        <h4>members: {{m.first_name}} </h4>
+                        <h4>members: {{m.username}} </h4>
 
                 {% endfor%}
 

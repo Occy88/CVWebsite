@@ -4,28 +4,12 @@
 {% endblock %}
 {%block body%}
         <!-- List of uploaded documents -->
-        {% if documents %}
-                <ul>
-                {% for document in documents %}
-                        <li><a href="{{ document.docfile.url }}">{{ document.docfile.name }}
-                        <img src="{{ document.docfile.url }}" alt="{{ document.docfile.name }}">
-                        </a></li>
-                        <h1>Users</h1>
-                        {% for u in user %}
-                                {%if u.id == cu.id %}
-                                        <h2>current user</h2>
-                                {% endif %}
-                                <h3>first name:{{u.first_name}}</h3>
-                        {% endfor %}
-                {% endfor %}
-
-                </ul>
+        <h1>Home</h1>
+        {%if user.is_authenticated%}
+        <h3>logged in</h3>
         {% else %}
-
-                <p>No documents.</p>
+        <h4>not logged in</h4>
         {% endif %}
-
-
         <!-- Upload form. Note enctype attribute! -->
         <form action="{% url 'home:list' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}

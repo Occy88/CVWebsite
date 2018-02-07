@@ -8,7 +8,7 @@ app_name='accounts'
 urlpatterns = [
     #/account/
 
-    path('', views.home, name='accounts'),
+
 
     url(r'^login/$',login,{'template_name':'accounts/templates/registration/login.html'},name='login'),
     url(r'^register/$',views.register,name='register'),

@@ -27,10 +27,11 @@
             {% if user.is_authenticated %}
         <div class="navbar-nav">
           <a class="nav-link" href="{% url 'home:list' %}">Home <span class="sr-only">(current)</span></a>
-          <a class="nav-link" href="{% url 'accounts:edit_profile' %}">Edit Profile</a>
           <a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a>
+          <a class="nav-link" href="{% url 'accounts:edit_profile' %}">Edit Profile</a>
           <a class="nav-link" href="{% url 'accounts:change_password' %}">change password</a>
-
+          <a class="nav-link" href="{% url 'home:group_register' %}">Create Group</a>
+          <a class="nav-link" href="{% url 'home:group_list' %}">View Groups</a>
           <a class="nav-item nav-link disabled" href="#">Disabled</a>
         </div>
             {% else %}
