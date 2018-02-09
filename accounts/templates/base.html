@@ -26,7 +26,7 @@
       <div class="navbar-collapse collapse" id="navbarNavAltMarkup">
             {% if user.is_authenticated %}
         <div class="navbar-nav">
-          <a class="nav-link" href="{% url 'home:list' %}">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="{% url 'home:group_list' %}">Home <span class="sr-only">(current)</span></a>
           <a class="nav-link" href="{% url 'accounts:edit_profile' %}">Edit Profile</a>
           <a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a>
           <a class="nav-link" href="{% url 'accounts:change_password' %}">change password</a>

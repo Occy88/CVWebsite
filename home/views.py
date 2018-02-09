@@ -7,28 +7,39 @@ from django.shortcuts import reverse,redirect, get_object_or_404
 from home.models import Document,Group
 from home.forms import DocumentForm, GroupRegistrationForm
 
-def list(request):
+def group_detail_files(request,id=None):
+    group=get_object_or_404(Group, id=id)
+    document=Document.objects.all()
+    context = {'group':group,'document':document}
+    return render(
+        request, 'home/templates/home_groups_specified_files.html', context
+    )
+def group_detail_files_upload(request,id=None):
     # Handle file upload
+    group = get_object_or_404(Group, id=id)
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)
+        print(str(form.errors))
         if form.is_valid():
-            newdoc = Document(docfile = request.FILES['docfile'])
-            newdoc.save()
+            print("valid")
+            instance= form.save(commit=False)
+            instance.group=group
+            instance.save()
 
-            # Redirect to the document list after POST
-            return HttpResponseRedirect(reverse('home:list'))
+            return redirect(instance.get_absolute_url())
     else:
-        form = DocumentForm() # A empty, unbound form
+        form = DocumentForm()
 
-    # Load documents for the list page
-    documents = Document.objects.all()
     user=request.user
-
-
-    context = {'documents':documents,'form':form,'user':user}
+    context = {'form':form,'user':user,'id':id}
     # Render list page with the documents and the form
-    return render( request,'home/templates/home.html',context )
+    return render( request,'home/templates/home_groups_specified_files_upload.html',context )
 
+def group_detail_file_delete(request,id=None,idf=None):
+    instanceF=get_object_or_404(Document,id=idf)
+    instanceG=get_object_or_404(Group,id=id)
+    instanceF.delete()
+    return redirect(instanceG.get_absolute_url())
 def group_list(request):
     groups = Group.objects.all()
     user=request.user
@@ -42,8 +53,8 @@ def group_edit(request,id=None):
     if form.is_valid():
         instance=form.save()
         instance.save()
-
-        return redirect('home:group_list')
+        print(instance.get_absolute_url())
+        return redirect(instance.get_absolute_url())
 
     user = request.user
     return render(request, 'home/templates/home_groups_edit.html', {'form': form, 'user': user})

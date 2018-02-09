@@ -6,7 +6,7 @@
         <!-- List of uploaded documents -->
         <h1>Groups:</h1>
         {% for g in groups %}
-
+                {% if user in g.members.all %}
                 <h3>group name:{{g.name}}</h3>
                 <a href="{{g.id}}/">group info</a>
                 <h3>group id:{{g.id}}</h3>
@@ -15,6 +15,7 @@
                         <h4>members: {{m.username}} </h4>
 
                 {% endfor%}
+                {% endif %}
 
         {% endfor %}
 
