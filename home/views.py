@@ -1,10 +1,11 @@
 from django.shortcuts import render
-from django.http import Http404
+from django.http import Http404,StreamingHttpResponse,HttpResponseRedirect,HttpResponse
 from django.template import RequestContext
 from django.contrib.auth.models import User
-from django.http import HttpResponseRedirect
-from django.shortcuts import reverse,redirect, get_object_or_404
 
+from django.shortcuts import reverse,redirect, get_object_or_404
+import os
+from django.core.files import File
 from home.models import Document,Group
 from home.forms import DocumentForm, GroupRegistrationForm
 
@@ -27,6 +28,25 @@ def group_detail_files(request,id=None):
     return render(
         request, 'home/templates/home_groups_specified_files.html', context
     )
+
+def group_detail_file_download(request,id=None,idf=None):
+    group=get_object_or_404(Group, id=id)
+    thief = True
+    for u in group.members.all():
+        if u == request.user:
+            thief = False
+    if thief:
+        raise Http404
+    # Handle file upload
+    doc = get_object_or_404(Document, id=idf)
+    path= doc.docfile.path
+    if os.path.isfile(path):
+        f=open(path,'r')
+        file=File(f)
+        response = HttpResponse(file, content_type = 'application/vnd.ms-excel')
+        response['Content-Disposition'] = 'attachment; filename= "doc.filename"'
+        return response
+
 def group_detail_files_upload(request,id=None):
     # Handle file upload
     group = get_object_or_404(Group, id=id)

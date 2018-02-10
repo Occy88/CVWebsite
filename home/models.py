@@ -20,6 +20,8 @@ class Document(models.Model):
     def get_absolute_url(self):
         return reverse('home:group_detail_files',kwargs={'id':self.group.id})
 
+    def filename(self):
+        return os.path.basename(self.docfile.name)
 def _delete_file(path):
    """ Deletes file from filesystem. """
    if os.path.isfile(path):

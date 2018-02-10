@@ -17,5 +17,7 @@ urlpatterns = [
     url(r'^group_list/(?P<id>\d+)/delete/$', views.group_delete, name='group_delete'),
     url(r'^group_list/(?P<id>\d+)/files/upload/$', views.group_detail_files_upload, name='group_detail_files_upload'),
     url(r'^group_list/(?P<id>\d+)/files/$', views.group_detail_files, name='group_detail_files'),
-    url(r'^group_list/(?P<id>\d+)/files/(?P<idf>\d+)/$', views.group_detail_file_delete, name='group_detail_files_delete'),
+    url(r'^group_list/(?P<id>\d+)/files/(?P<idf>\d+)/delete/$', views.group_detail_file_delete, name='group_detail_files_delete'),
+    url(r'^group_list/(?P<id>\d+)/files/(?P<idf>\d+)/download/$', views.group_detail_file_download, name='group_detail_files_download'),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -8,8 +8,9 @@
         {% for d in document %}
                 {% if group == d.group %}
                         <h3>group name:{{d.group.name}}</h3>
-                        <h3>file id:{{d.id}}</h3>
-                        <a href="{{d.id}}/">Delete file</a>
+                        <h3>file name:{{d.filename }}</h3>
+                        <a href="{{d.id}}/delete/">Delete file</a>
+                        <a href="{{d.id}}/download/">download file</a>
                 {% endif %}
         {% endfor %}
  <a href="upload/">upload file</a>
