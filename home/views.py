@@ -18,6 +18,8 @@ def home(request):
 def group_detail_files(request,id=None):
     group=get_object_or_404(Group, id=id)
     thief=True
+    if request.user.is_superuser:
+        thief=False
     for u in group.members.all():
         if u==request.user:
             thief=False
@@ -32,6 +34,8 @@ def group_detail_files(request,id=None):
 def group_detail_file_download(request,id=None,idf=None):
     group=get_object_or_404(Group, id=id)
     thief = True
+    if request.user.is_superuser:
+        thief=False
     for u in group.members.all():
         if u == request.user:
             thief = False
@@ -51,6 +55,8 @@ def group_detail_files_upload(request,id=None):
     # Handle file upload
     group = get_object_or_404(Group, id=id)
     thief = True
+    if request.user.is_superuser:
+        thief=False
     for u in group.members.all():
         if u == request.user:
             thief = False
@@ -79,6 +85,8 @@ def group_detail_file_delete(request,id=None,idf=None):
     instanceF = get_object_or_404(Document, id=idf)
     instanceG = get_object_or_404(Group, id=id)
     thief = True
+    if request.user.is_superuser:
+        thief=False
     for u in instanceG.members.all():
         if u == request.user:
             thief = False
@@ -100,9 +108,14 @@ def group_edit(request,id=None):
     thief = True
     for u in instance.members.all():
         if u == request.user:
-            thief = False
+            for l in instance.isLeader.all():
+                if l==request.user:
+                    thief = False
+    if request.user.is_superuser:
+        thief=False
     if thief:
         raise Http404
+
     form= GroupRegistrationForm(request.POST or None,instance=instance)
     if form.is_valid():
         instance=form.save()
@@ -116,16 +129,29 @@ def group_edit(request,id=None):
 def group_detail(request,id=None):
     instance=get_object_or_404(Group,id=id)
     thief = True
+    if request.user.is_superuser:
+        thief=False
     for u in instance.members.all():
         if u == request.user:
             thief = False
     if thief:
         raise Http404
-    context = {'id':id,'name': instance.name, 'members': instance.members}
+    group=instance
+    context = {'id':id,'name': instance.name,'group':group}
     return render(
         request, 'home/templates/home_groups_specified.html', context)
 def group_delete(request,id=None):
     instance=get_object_or_404(Group,id=id)
+    thief = True
+    if request.user.is_superuser:
+        thief=False
+    for u in instance.members.all():
+        if u == request.user:
+            for l in instance.isLeader.all():
+                if l == request.user:
+                    thief = False
+    if thief:
+        raise Http404
     instance.delete()
     return redirect('home:group_list')
 

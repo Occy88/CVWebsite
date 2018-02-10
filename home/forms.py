@@ -18,12 +18,14 @@ class DocumentForm(forms.ModelForm):
 
 class GroupRegistrationForm(forms.ModelForm):
     name=forms.CharField(label='name',max_length=100)
-    members=forms.ModelMultipleChoiceField(label='members:',queryset=User.objects.all())
+    members=forms.ModelMultipleChoiceField(label='members:',widget=forms.CheckboxSelectMultiple(),queryset=User.objects.all())
+    isLeader = forms.ModelMultipleChoiceField(label='isLeader:',widget=forms.CheckboxSelectMultiple(), queryset=User.objects.all())
     class Meta:
         model=Group
         fields=[
             'name',
-            'members'
+            'members',
+            'isLeader'
         ]
     def save(self, commit=True):
         group = super().save(commit=False)

@@ -4,13 +4,18 @@
 {% endblock %}
 {% block body %}
 
-<h2>Group Name: {{name}} </h2>
-{% for m in members.all %}
+<h2>Group Name: {{group.name}} </h2>
+{% for m in group.members.all %}
     <h4>members: {{m.username}} </h4>
 {% endfor %}
+
+{% if user in group.isLeader.all %}
+
 <a href="edit/">Edit Group</a>
 <a href="delete/">Delete Group</a>
+{% else %}
 <a href="files/">view files</a>
+{% endif %}
 
 
 {% endblock %}
