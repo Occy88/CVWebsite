@@ -5,21 +5,8 @@
 {%block body%}
         <!-- List of uploaded documents -->
         <h1>Home</h1>
-        {%if user.is_authenticated%}
-        <h3>logged in</h3>
-        {% else %}
-        <h4>not logged in</h4>
-        {% endif %}
-        <!-- Upload form. Note enctype attribute! -->
-        <form action="{% url 'home:list' %}" method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                <p>{{ form.non_field_errors }}</p>
-                <p>{{ form.docfile.label_tag }} </p>
-                <p>
-                        {{ form.docfile.errors }}
-                        {{ form.docfile }}
-                </p>
-                <p><input type="submit" value="Upload" /></p>
-        </form>
+
+
+        <a href="group_list/">view groups</a>
 
 {%endblock%}

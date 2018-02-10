@@ -1,0 +1,17 @@
+{% extends 'home/templates/base.html' %}
+{% block head %}
+<title>Groups list</title>
+{% endblock %}
+{%block body%}
+        <!-- List of uploaded documents -->
+        <h1>Documents:</h1>
+        {% for d in document %}
+                {% if group == d.group %}
+                        <h3>group name:{{d.group.name}}</h3>
+                        <h3>file id:{{d.id}}</h3>
+                        <a href="{{d.id}}/">Delete file</a>
+                {% endif %}
+        {% endfor %}
+ <a href="upload/">upload file</a>
+
+{%endblock%}

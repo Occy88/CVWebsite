@@ -9,7 +9,7 @@ from django.contrib import admin
 app_name='home'
 
 urlpatterns = [
-    path('', views.group_list, name='home'),
+    path('', views.home, name='home'),
     url(r'^group_list/$', views.group_list, name='group_list'),
     url(r'^group_register/$',views.group_register,name='group_register'),
     url(r'^group_list/(?P<id>\d+)/edit/$', views.group_edit, name='group_edit'),
