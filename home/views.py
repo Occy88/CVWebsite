@@ -45,10 +45,11 @@ def group_detail_file_download(request,id=None,idf=None):
     doc = get_object_or_404(Document, id=idf)
     path= doc.docfile.path
     if os.path.isfile(path):
-        f=open(path,'r')
+        f=open(path,'rb')
         file=File(f)
-        response = HttpResponse(file, content_type = 'application/vnd.ms-excel')
-        response['Content-Disposition'] = 'attachment; filename= "doc.filename"'
+        name=doc.filename()
+        response = HttpResponse(file, content_type = 'application')
+        response['Content-Disposition'] = 'attachment; filename={}'.format(name)
         return response
 
 def group_detail_files_upload(request,id=None):

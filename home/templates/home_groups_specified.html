@@ -11,11 +11,15 @@
 
 {% if user in group.isLeader.all %}
 
+
 <a href="edit/">Edit Group</a>
 <a href="delete/">Delete Group</a>
+<a href="files/">view files</a>
 {% else %}
 <a href="files/">view files</a>
 {% endif %}
+
+
 
 
 {% endblock %}
