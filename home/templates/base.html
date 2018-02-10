@@ -18,33 +18,46 @@
 <body background="background.png">
     <br>
 
-    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <a class="navbar-brand" href="{% url 'accounts:login' %}">Navbar</a>
-      <div class="navbar-collapse collapse" id="navbarNavAltMarkup">
-            {% if user.is_authenticated %}
-        <div class="navbar-nav">
-          <a class="nav-link" href="{% url 'home:home' %}">Home <span class="sr-only">(current)</span></a>
-          <a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a>
-          <a class="nav-link" href="{% url 'accounts:edit_profile' %}">Edit Profile</a>
-          <a class="nav-link" href="{% url 'accounts:change_password' %}">change password</a>
-          <a class="nav-link" href="{% url 'home:group_register' %}">Create Group</a>
-          <a class="nav-link" href="{% url 'home:group_list' %}">View Groups</a>
-          <a class="nav-item nav-link disabled" href="#">Disabled</a>
+
+ <nav class="navbar navbar-expand-sm bg-light navbar-light">
+  <!-- Brand -->
+  <a class="navbar-brand mr-auto " >File Repo</a>
+
+  <!-- Links -->
+  <ul class="navbar-nav ">
+
+
+    <!-- Dropdown -->
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+        Navigate
+      </a>
+
+        {% if user.is_authenticated %}
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="{% url 'home:home' %}">Home <span class="sr-only">(current)</span></a>
+          <a class="dropdown-item" href="{% url 'accounts:logout' %}">Logout</a>
+          <a class="dropdown-item" href="{% url 'accounts:edit_profile' %}">Edit Profile</a>
+          <a class="dropdown-item" href="{% url 'accounts:change_password' %}">New Pass</a>
+          <a class="dropdown-item" href="{% url 'home:group_register' %}">New Group</a>
+          <a class="dropdown-item" href="{% url 'home:group_list' %}">My Groups</a>
+          <a class="dropdown-item" href="#">Disabled</a>
         </div>
             {% else %}
-          <div class="navbar-nav">
-          <a class="nav-link" href="{% url 'accounts:login' %}">Login</a>
-          <a class="nav-link" href="{% url 'accounts:register' %}">Register</a>
-          <a class="nav-item nav-link disabled" href="#">Disabled</a>
-          <a class="nav-link" href="{% url 'accounts:password_reset' %}">Reset Password</a>
+          <div class="dropdown-menu">
+          <a class="dropdown-item" href="{% url 'accounts:login' %}">Login</a>
+          <a class="dropdown-item" href="{% url 'accounts:register' %}">Register</a>
+          <a class="dropdown-item" href="#">Disabled</a>
+          <a class="dropdown-item" href="{% url 'accounts:password_reset' %}">Reset Pass</a>
 
         </div>
           {%endif%}
-      </div>
-    </nav>
+    </li>
+  </ul>
+</nav>
+
+
+
 </br>
     {% block body %}
     {% endblock %}

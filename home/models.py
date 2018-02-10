@@ -1,7 +1,8 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.dispatch import receiver
 from django.urls import reverse
-
+import os
 
 
 class Group(models.Model):
@@ -18,3 +19,15 @@ class Document(models.Model):
     docfile = models.FileField(upload_to='documents',null=True)
     def get_absolute_url(self):
         return reverse('home:group_detail_files',kwargs={'id':self.group.id})
+
+def _delete_file(path):
+   """ Deletes file from filesystem. """
+   if os.path.isfile(path):
+       os.remove(path)
+
+@receiver(models.signals.post_delete, sender=Document)
+def delete_file(sender, instance, *args, **kwargs):
+    """ Deletes image files on `post_delete` """
+    if instance.docfile:
+        _delete_file(instance.docfile.path)
+

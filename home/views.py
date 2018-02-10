@@ -31,7 +31,7 @@ def group_detail_files_upload(request,id=None):
     # Handle file upload
     group = get_object_or_404(Group, id=id)
     thief = True
-    for u in group.members.all(x):
+    for u in group.members.all():
         if u == request.user:
             thief = False
     if thief:
@@ -64,7 +64,6 @@ def group_detail_file_delete(request,id=None,idf=None):
             thief = False
     if thief:
         raise Http404
-
     instanceF.delete()
     return redirect(instanceG.get_absolute_url())
 def group_list(request):
