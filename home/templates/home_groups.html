@@ -3,21 +3,38 @@
 <title>Groups list</title>
 {% endblock %}
 {%block body%}
-        <!-- List of uploaded documents -->
-        <h1>Groups:</h1>
+<div class="container-fluid">
+    <h2>Groups:</h2>
+    <a href="{% url 'home:group_register' %}" class="btn btn-info" role="button">New Group</a>
+    <br>
+    <br>
+    <div class="container-fluid">
         {% for g in groups %}
-                {% if user in g.members.all %}
-                <h3>group name:{{g.name}}</h3>
+            {% if user in g.members.all %}
+                <div class="container-fluid">
+                    <div class="card" style="width: 25rem;">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h3>group name:{{g.name}}</h3>
+                                </div>
+                            </div>
+                            {%for m in g.members.all%}
+                                <h5 class="card-columns">{{m.username}}</h5>
+                            {% endfor %}
+                            <div class="flex-row">
+                                <a href="{{g.id}}" class="btn btn-danger" role="button">group info</a>
+                            </div>
+                            <br>
 
-                <h5>group id:{{g.id}}</h5>
-                {%for m in g.members.all%}
-                        <h5>members: {{m.username}} </h5>
-                {% endfor%}
-                <a href="{{g.id}}/">group info</a>
 
-
-                {% endif %}
-
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
         {% endfor %}
+    </div>
+</div>
+
 
 {%endblock%}

@@ -3,30 +3,48 @@
 <title>Group</title>
 {% endblock %}
 {% block body %}
+<div class="container-fluid">
+    <h2>Group Name: {{group.name}} </h2>
 
-<h2>Group Name: {{group.name}} </h2>
-{% for m in group.members.all %}
-    <h4>members: {{m.username}} </h4>
-{% endfor %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-1">
+                {% if user in group.isLeader.all %}
+                    <a href="edit/" class="btn btn-outline-dark" role="button">Edit Group</a>
+                    <a href="delete/" class="btn btn-outline-dark" role="button">Delete Group</a>
+                    <a href="files/" class="btn btn-outline-dark" role="button">View Files</a>
+                    <a href="comment/" class="btn btn-outline-dark" role="button">Add Comment</a>
 
-{% if user in group.isLeader.all %}
-    <a href="edit/">Edit Group</a>
-    <a href="delete/">Delete Group</a>
-    <a href="files/">view files</a>
-    <a href="comment/">add Comment</a>
-{% else %}
-    <a href="files/">view files</a>
-    <a href="comment/">add Comment</a>
-    <a href="{{c.id}}/delete/">remove Comment</a>
-{% endif %}
-{% for c in comment %}
-    {% if group == c.group %}
-        <h3>{{c.title}}</h3>
-        <h4>{{c.comment}}</h4>
-        <a href="{{c.id}}/delete/">remove Comment</a>
-    {% endif %}
-{% endfor %}
+                {% else %}
+                    <a href="files/" class="btn btn-info" role="button">View Files</a>
+                    <a href="comment/" class="btn btn-info" role="button">Add Comment</a>
+                {% endif %}
+
+            </div>
+            <div class="col-lg-6">
+                <h3>Members:</h3>
+                {% for m in group.members.all %}
+                    <h4>{{m.username}} </h4>
+                {% endfor %}
+            </div>
+        </div>
+
+        {% for c in comment %}
+            {% if group == c.group %}
+                <div class="card" style="width: 20rem;">
+                    <div class="card card-body">
+                        <h4 class="card-title">{{c.title}}</h4>
+                        <p class="card-text">{{c.comment}}</p>
+                        <div class="flex-row">
+                            <a href="{{c.id}}/delete/" class="btn btn-danger" role="button">Remove Comment</a>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
 
 
+</div>
 {% endblock %}
 </html>

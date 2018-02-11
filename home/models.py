@@ -14,6 +14,8 @@ class Group(models.Model):
 
     def get_absolute_url(self):
         return reverse('home:group_detail',kwargs={'id':self.id})
+    def get_absolute_urlf(self):
+        return reverse('home:group_detail_files',kwargs={'id':self.id})
 
 class Document(models.Model):
     group=models.ForeignKey(Group,default=1,on_delete=models.CASCADE)

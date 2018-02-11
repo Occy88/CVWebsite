@@ -178,7 +178,7 @@ def group_detail_files_delete(request,id=None,idf=None):
     if thief:
         raise Http404
     instanceF.delete()
-    return redirect(instanceG.get_absolute_url())
+    return redirect(instanceG.get_absolute_urlf())
 
 #Comments:
 def group_detail_comment(request,id=None):

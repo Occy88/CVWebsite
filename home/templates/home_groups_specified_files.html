@@ -2,26 +2,59 @@
 {% block head %}
 <title>Groups list</title>
 {% endblock %}
-{%block body%}
-        <!-- List of uploaded documents -->
-        <h1>Documents:</h1>
-        {% for d in document %}
+{% block body %}
+<div class="container-fluid">
+    <h2>Group Files:</h2>
+    <a href="upload/" class="btn btn-info" role="button">Upload File</a>
+    <br>
+    <br>
+
+    <div class="container-fluid">
+
+            {% for d in document %}
                 {% if group == d.group %}
-                        <h3>file name:{{d.filename }}</h3>
-                        <a href="{{d.id}}/delete/">Delete file</a>
-                        <a href="{{d.id}}/download/">download file</a>
-                        {% for c in comment %}
-                            {% if d == c.document %}
-                                <h3>title: {{c.title}}</h3>
-                                <h4>{{c.comment}}</h4>
-                                <a href="{{d.id}}/{{c.id}}/delete">remove Comment</a>
+                    <div class="container-fluid">
+                        <div class="card" style="width: 25rem;">
+                            <div class="container-fluid">
 
-                            {% endif %}
-                        {% endfor %}
-                        <a href="{{d.id}}/comment/">add Comment</a>
-                        <br>
+
+                                <div class="row">
+
+                                     <div class="col-lg-6">
+                                        <h4>File Name: {{d.filename }} </h4>
+                                    </div>
+                                    <div class="col-auto">
+
+                                        <a href="{{d.id}}/delete/" class="btn btn-outline-danger" role="button">delete</a>
+                                        <a href="{{d.id}}/download/" class="btn btn-outline-success" role="button">download</a>
+                                    </div>
+
+                                </div>
+
+                                {% for c in comment %}
+                                    {% if d == c.document %}
+                                        <div class="card" style="width: 20rem;">
+                                            <div class="card card-body">
+                                                <h5 class="card-title">{{c.title}}</h5>
+                                                <p class="card-text">{{c.comment}}</p>
+                                                <div class="flex-row">
+                                                    <a href="{{d.id}}/{{c.id}}/delete/" class="btn btn-outline-danger" role="button">delete Comment</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                                <br>
+                                <a href="{{d.id}}/comment/" class="btn btn-outline-dark" role="button">Add Comment</a>
+                            </div>
+                        </div>
+                    </div>
+                <br>
                 {% endif %}
-        {% endfor %}
- <a href="upload/">upload file</a>
+            {% endfor %}
 
-{%endblock%}
+
+    </div>
+</div>
+
+{% endblock %}

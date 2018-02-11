@@ -4,9 +4,11 @@
 {% endblock %}
 {%block body%}
         <!-- List of uploaded documents -->
-        <h1>Home</h1>
-
-
-        <a href="group_list/">view groups</a>
+<div class="container-fluid">
+    <div class="col-auto">
+        <h1>User Name: {{user.username}}</h1>
+        <a href="group_list/"class="btn btn-outline-dark" role="button">view groups</a>
+    </div>
+</div>
 
 {%endblock%}
