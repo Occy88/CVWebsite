@@ -10,16 +10,22 @@
 {% endfor %}
 
 {% if user in group.isLeader.all %}
-
-
-<a href="edit/">Edit Group</a>
-<a href="delete/">Delete Group</a>
-<a href="files/">view files</a>
+    <a href="edit/">Edit Group</a>
+    <a href="delete/">Delete Group</a>
+    <a href="files/">view files</a>
+    <a href="comment/">add Comment</a>
 {% else %}
-<a href="files/">view files</a>
+    <a href="files/">view files</a>
+    <a href="comment/">add Comment</a>
+    <a href="{{c.id}}/delete/">remove Comment</a>
 {% endif %}
-
-
+{% for c in comment %}
+    {% if group == c.group %}
+        <h3>{{c.title}}</h3>
+        <h4>{{c.comment}}</h4>
+        <a href="{{c.id}}/delete/">remove Comment</a>
+    {% endif %}
+{% endfor %}
 
 
 {% endblock %}

@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from home.models import Group,Document
+from home.models import Group,Document, GroupComment, DocumentComment
 
 class DocumentForm(forms.ModelForm):
     docfile = forms.FileField(label='Select a file')
@@ -15,7 +15,37 @@ class DocumentForm(forms.ModelForm):
         if commit:
             document.save()
         return document
+class DocumentCommentForm(forms.ModelForm):
+    title = forms.CharField(label='title',max_length=100)
+    comment = forms.CharField(label='comment', max_length=100)
+    class Meta:
+        model=DocumentComment
+        fields=[
+            'title',
+            'comment'
+        ]
+    def save(self, commit=True):
+        instance = super().save(commit=False)
 
+        if commit:
+            instance.save()
+        return instance
+
+class GroupCommentForm(forms.ModelForm):
+    title = forms.CharField(label='title', max_length=100)
+    comment = forms.CharField(label='comment', max_length=100)
+    class Meta:
+        model = GroupComment
+        fields = [
+            'title',
+            'comment'
+        ]
+
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        if commit:
+            instance.save()
+        return instance
 class GroupRegistrationForm(forms.ModelForm):
     name=forms.CharField(label='name',max_length=100)
     members=forms.ModelMultipleChoiceField(label='members:',widget=forms.CheckboxSelectMultiple(),queryset=User.objects.all())

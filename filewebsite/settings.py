@@ -23,7 +23,7 @@ def get_env_variable(var_name):
         return os.environ[var_name]
     except KeyError:
         error_msg = "Set the %s environment variable" % var_name
-        raise ImproperlyConfigured(error_msg)
+        raise fImproperlyConfigured(error_msg)
 
 # Get ENV VARIABLES key
 ENV_ROLE = get_env_variable('ENV_ROLE')

@@ -8,13 +8,14 @@
         {% for g in groups %}
                 {% if user in g.members.all %}
                 <h3>group name:{{g.name}}</h3>
-                <a href="{{g.id}}/">group info</a>
-                <h3>group id:{{g.id}}</h3>
 
+                <h5>group id:{{g.id}}</h5>
                 {%for m in g.members.all%}
-                        <h4>members: {{m.username}} </h4>
-
+                        <h5>members: {{m.username}} </h5>
                 {% endfor%}
+                <a href="{{g.id}}/">group info</a>
+
+
                 {% endif %}
 
         {% endfor %}
