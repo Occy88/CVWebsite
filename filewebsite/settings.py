@@ -97,8 +97,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'noob',
-        'USER': 'postgres',
-        'PASSWORD':''
+        'USER': 'filerepo',
+        'PASSWORD':'pass1111'
     }
 }
 
