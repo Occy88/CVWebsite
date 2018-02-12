@@ -98,7 +98,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'noob',
         'USER': 'filerepo',
-        'PASSWORD':'pass1111'
+        'PASSWORD':'pass1111',
+        'HOST': 'localhost',
+        'POST': '',
     }
 }
 
