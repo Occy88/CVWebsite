@@ -17,17 +17,17 @@ from django.core.exceptions import ImproperlyConfigured
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Handling Key Import Errors
-def get_env_variable(var_name):
-    """ Get the environment variable or return exception """
-    try:
-        return os.environ[var_name]
-    except KeyError:
-        error_msg = "Set the %s environment variable" % var_name
-        raise ImproperlyConfigured(error_msg)
+# def get_env_variable(var_name):
+#     """ Get the environment variable or return exception """
+#     try:
+#         return os.environ[var_name]
+#     except KeyError:
+#         error_msg = "Set the %s environment variable" % var_name
+#         raise ImproperlyConfigured(error_msg)
 
 # Get ENV VARIABLES key
-ENV_ROLE = get_env_variable('ENV_ROLE')
-
+# ENV_ROLE = get_env_variable('ENV_ROLE')
+ENV_ROLE='production'
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
@@ -74,7 +74,7 @@ ROOT_URLCONF = 'filewebsite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['C:/Users/octav/webProjects/filerepo/filewebsite/CS1813_2018_03/'],
+        'DIRS': ['/FileRepository/filewebsite/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
