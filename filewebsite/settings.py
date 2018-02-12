@@ -41,7 +41,7 @@ if ENV_ROLE == 'development':
     DEBUG = True
     TEMPLATE_DEBUG = DEBUG
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['159.65.22.113']
 
 #######################
 # Application definition
