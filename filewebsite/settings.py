@@ -74,7 +74,7 @@ ROOT_URLCONF = 'filewebsite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['~/FileRepository/filewebsite/'],
+        'DIRS': ['~/FileRepository/'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
