@@ -242,9 +242,7 @@ def group_detail_comment_delete(request,id=None,idc=None):
         thief=False
     for u in instance.members.all():
         if u == request.user:
-            for l in instance.isLeader.all():
-                if l == request.user:
-                    thief = False
+            thief=False
     if thief:
         raise Http404
     instanceC.delete()

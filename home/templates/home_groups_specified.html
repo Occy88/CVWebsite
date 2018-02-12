@@ -9,7 +9,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-1">
-                {% if user in group.isLeader.all %}
+                {% if user in group.isLeader.all or user.is_superuser %}
                     <a href="edit/" class="btn btn-outline-dark" role="button">Edit Group</a>
                     <a href="delete/" class="btn btn-outline-dark" role="button">Delete Group</a>
                     <a href="files/" class="btn btn-outline-dark" role="button">View Files</a>

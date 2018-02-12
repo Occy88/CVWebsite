@@ -10,7 +10,7 @@
     <br>
     <div class="container-fluid">
         {% for g in groups %}
-            {% if user in g.members.all %}
+            {% if user in g.members.all or user.is_superuser %}
                 <div class="container-fluid">
                     <div class="card" style="width: 25rem;">
                         <div class="container-fluid">
