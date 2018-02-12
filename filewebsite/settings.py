@@ -27,7 +27,7 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Get ENV VARIABLES key
 # ENV_ROLE = get_env_variable('ENV_ROLE')
-ENV_ROLE='production'
+ENV_ROLE='development'
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
@@ -41,7 +41,7 @@ if ENV_ROLE == 'development':
     DEBUG = True
     TEMPLATE_DEBUG = DEBUG
 
-ALLOWED_HOSTS = ['159.65.22.113']
+ALLOWED_HOSTS = ['*']
 
 #######################
 # Application definition
