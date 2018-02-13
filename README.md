@@ -20,10 +20,3 @@ Html for better Navigation bar that changes depending on where user is [front en
 
 Extras:
 Adding users and leaders to groups by searchbar, (dont know how) [backend/front end]
-
-
-
-
-
-
-
