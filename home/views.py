@@ -12,10 +12,13 @@ from home.forms import DocumentForm, GroupRegistrationForm, GroupCommentForm, Do
 #home page:
 def home(request):
     user=request.user
-    context = {'user':user}
+    document = Document.objects.all()
+    context = {'user': user, 'document': document}
     return render(
         request, 'home/templates/home.html', context
+
     )
+
 
 #Group:
 def group_list(request):

@@ -10,5 +10,12 @@
         <a href="group_list/"class="btn btn-outline-dark" role="button">view groups</a>
     </div>
 </div>
+{% for d in document %}
+            {% if user in d.group.members.all or user.is_superuser %}
+                <h3></h3>
+                <a href= "{{d.group.get_absolute_urlf}}" class="btn btn-outline-dark" role="button">{{d.filename}} ID: {{d.id}}</a>
+            {% endif %}
+        {% endfor %}
 
 {%endblock%}
+
