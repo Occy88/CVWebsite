@@ -9,18 +9,21 @@ admin.py you can register a model so it can be tested in /admin/ (nice django th
 
 
 ##############################################################################
-WORK REQUIRED:
-Front-end:
-html - more customization, so it looks good
-css implentation
-much further down the line:
-JS, if needed.
+Website is live at http://159.65.22.113
+Most core functionality is complete, More fields needed such as timestamps for files,
+email notification for upload of a file or edit [backend] --however this is wierd nobody wants to receive an email on every upload...
+searching for files with a searchbar - [front end]
+Html for better display of comments [front end]
+Html for better display of files [front end]
+Html for better display of all screens [front end]
+Html for better Navigation bar that changes depending on where user is [front end]
 
-Back-end:
-connecting uploaded files with user:
-maybe make a field for the user or file-- to be figured out
-allow user to download/remove files
-allow user to add comment
+Extras:
+Adding users and leaders to groups by searchbar, (dont know how) [backend/front end]
+
+
+
+
 
 
 
