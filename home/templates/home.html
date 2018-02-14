@@ -18,13 +18,14 @@
     {% endif %}
 {% endfor %}
 
-
-{% for u in users %}
-    {% for l in log %}
-        {% if u == l.user %}
-            <h4>{{l.time}}: {{l.user.username}} {{l.action}} {{l.name}}</h4>
-        {% endif %}
+<div align="right" width="50%">
+    {% for u in users %}
+        {% for l in log %}
+            {% if u == l.user %}
+                <h4>{{l.time}}: {{l.user.username}} {{l.action}} {{l.name}}</h4>
+            {% endif %}
+        {% endfor %}
     {% endfor %}
-{% endfor %}
+</div>
 {%endblock%}
 

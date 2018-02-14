@@ -48,7 +48,8 @@ def group_edit(request,id=None):
 
     form= GroupRegistrationForm(request.POST or None,instance=instance)
     if form.is_valid():
-        instance=form.save()
+        instance=form.save(commit=False)
+        instance.modifier = request.user.id
         instance.save()
         print(instance.get_absolute_url())
         return redirect(instance.get_absolute_url())
@@ -83,6 +84,7 @@ def group_delete(request,id=None):
                     thief = False
     if thief:
         raise Http404
+    instance.modifier = request.user.id
     instance.delete()
     return redirect('home:group_list')
 
@@ -90,10 +92,10 @@ def group_register(request):
     if request.method == 'POST':
         form = GroupRegistrationForm(request.POST)
         if form.is_valid():
-            instance = form.save(commit=False)
+            instance = form.save()
             instance.creator = request.user.id
+            instance.modifier = request.user.id
             instance.save()
-
             return HttpResponseRedirect(reverse('home:group_list'))
     else:
         form = GroupRegistrationForm()
@@ -185,6 +187,7 @@ def group_detail_files_delete(request,id=None,idf=None):
             thief = False
     if thief:
         raise Http404
+    instanceF.modifier = request.user.id
     instanceF.delete()
     return redirect(instanceG.get_absolute_urlf())
 
@@ -231,7 +234,8 @@ def group_detail_files_comment(request,id=None,idf=None):
         form = DocumentCommentForm(request.POST)
         if form.is_valid():
             instance= form.save(commit=False)
-            instance.document=document
+            instance.document = document
+            instance.document.modifier = request.user.id
             instance.save()
             return redirect(instance.get_absolute_url())
     else:
@@ -253,6 +257,7 @@ def group_detail_comment_delete(request,id=None,idc=None):
             thief=False
     if thief:
         raise Http404
+    instanceC.group.modifier = request.user.id
     instanceC.delete()
 
     return redirect(instance.get_absolute_url())
@@ -269,5 +274,14 @@ def group_detail_files_comment_delete(request,id=None,idf=None,idc=None):
             thief = False
     if thief:
         raise Http404
+    instanceC.document.modifier = request.user.id
     instanceC.delete()
     return redirect(instanceF.get_absolute_url())
+
+def log_clear(self):
+    log= Log.objects.all()
+    for l in log:
+        l.delete()
+
+    return redirect('home:home')
+

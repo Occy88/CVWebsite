@@ -8,6 +8,7 @@ import os
 
 
 class Group(models.Model):
+    modifier = models.IntegerField(default=1)
     name=models.CharField(max_length=100,)
     creator=models.IntegerField(default=1)
     members=models.ManyToManyField(User, related_name='members')
@@ -21,6 +22,7 @@ class Group(models.Model):
         return reverse('home:group_detail_files',kwargs={'id':self.id})
 
 class Document(models.Model):
+    modifier = models.IntegerField(default=1)
     name = models.CharField(max_length=50, default="")
     group=models.ForeignKey(Group,default=1,on_delete=models.CASCADE)
     docfile = models.FileField(upload_to='documents',null=True)
@@ -65,24 +67,21 @@ class Log(models.Model):
     name = models.CharField(max_length=100)
     time = models.DateTimeField(default=datetime.now)
 #---GROUPS
-@receiver(models.signals.pre_save, sender=Group)
+@receiver(models.signals.post_save, sender=Group)
 def create_group(sender, instance, *args, **kwargs):
     log = Log()
-    if instance in Group.objects.all():
-        log.action = "edited group"
-    else:
-        log.action = "created group"
+    log.action = "created/edited group"
     log.name = instance.name
-    user = get_object_or_404(User, id=instance.creator)
+    user = get_object_or_404(User, id=instance.modifier)
     log.user = user
     log.save()
 
-@receiver(models.signals.post_delete, sender=Group)
+@receiver(models.signals.pre_delete, sender=Group)
 def delete_group(sender, instance, *args, **kwargs):
     log = Log()
     log.action = "deleted group"
     log.name = instance.name
-    user = get_object_or_404(User, id=instance.creator)
+    user = get_object_or_404(User, id=instance.modifier)
     log.user = user
     log.save()
 #---GROUP COMMENTS
@@ -94,7 +93,7 @@ def create_group_comment(sender, instance, *args, **kwargs):
     else:
         log.action = "added comment:"
     log.name = instance.title
-    user = get_object_or_404(User, id=instance.group.creator)
+    user = get_object_or_404(User, id=instance.group.modifier)
     log.user = user
     log.save()
 
@@ -103,7 +102,7 @@ def delete_group_comment(sender, instance, *args, **kwargs):
     log = Log()
     log.action = "deleted comment:"
     log.name = instance.title
-    user = get_object_or_404(User, id=instance.group.creator)
+    user = get_object_or_404(User, id=instance.group.modifier)
     log.user = user
     log.save()
 
@@ -116,7 +115,7 @@ def create_document(sender, instance, *args, **kwargs):
     else:
         log.action = "added document:"
     log.name = instance.name
-    user = get_object_or_404(User, id=instance.creator)
+    user = get_object_or_404(User, id=instance.modifier)
     log.user = user
     log.save()
 
@@ -125,33 +124,32 @@ def delete_document(sender, instance, *args, **kwargs):
     log = Log()
     log.action = "deleted document:"
     log.name = instance.name
-    user = get_object_or_404(User, id=instance.creator)
+    user = get_object_or_404(User, id=instance.modifier)
     log.user = user
     log.save()
 
-#---DOCUMENTS
+
+#---DOCUMENT COMMENTS
 @receiver(models.signals.pre_save, sender=DocumentComment)
 def create_document_comment(sender, instance, *args, **kwargs):
     log = Log()
     if instance in DocumentComment.objects.all():
-        log.action = "edited comment:"
+        log.action = "edited comment to:"
     else:
-        log.action = "added comment:"
+        log.action = "added comment to:"
     log.name = instance.document.name
-    user = get_object_or_404(User, id=instance.creator)
+    user = get_object_or_404(User, id=instance.document.modifier)
     log.user = user
     log.save()
 
 @receiver(models.signals.post_delete, sender=DocumentComment)
 def delete_document_comment(sender, instance, *args, **kwargs):
     log = Log()
-    log.action = "deleted document:"
-    log.name = instance.docuemnt.name
-    user = get_object_or_404(User, id=instance.creator)
+    log.action = "deleted comment to:"
+    log.name = instance.document.name
+    user = get_object_or_404(User, id=instance.document.modifier)
     log.user = user
     log.save()
-
-
 
 
 
