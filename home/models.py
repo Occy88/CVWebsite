@@ -119,7 +119,7 @@ def create_document(sender, instance, *args, **kwargs):
     log.user = user
     log.save()
 
-@receiver(models.signals.post_delete, sender=Document)
+@receiver(models.signals.pre_delete, sender=Document)
 def delete_document(sender, instance, *args, **kwargs):
     log = Log()
     log.action = "deleted document:"

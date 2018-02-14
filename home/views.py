@@ -164,6 +164,7 @@ def group_detail_files_upload(request,id=None):
         if form.is_valid():
             print("valid")
             instance= form.save(commit=False)
+            instance.modifier = request.user.id
             instance.group=group
             instance.save()
 
