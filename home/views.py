@@ -93,6 +93,8 @@ def group_register(request):
         form = GroupRegistrationForm(request.POST)
         if form.is_valid():
             instance = form.save()
+            if !(request.user in instance.members.objects.all()):
+                instance.members.add(request.user)
             instance.creator = request.user.id
             instance.modifier = request.user.id
             instance.save()
