@@ -101,17 +101,13 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'noob',
-<<<<<<< HEAD
-        'USER': 'postgres',
-        'PASSWORD':'xhV6F9yb',
-=======
+
 
         'USER': 'filerepo',
         'PASSWORD':'pass1111',
         'HOST':'localhost',
         'POST':'',
 
->>>>>>> 6de86a5355a96827114502075d66ed747e985615
     }
 }
 
