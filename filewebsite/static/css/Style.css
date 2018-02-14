@@ -1,0 +1,41 @@
+h1, h2, h2 h3, h5, h6{
+
+    font-family: "Garamond";
+    text-decoration: underline;
+    color: red;
+}
+
+p, ul, ol, dl, dd,{
+  font-family: "Garamond";
+  font-weight: "300";
+
+}
+
+a{
+  font-family: "Garamond";
+  font-weight:"00"
+}
+button {
+  display: inline-block;
+  padding: 25px 25px;
+  font-size: 24px;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 13px;
+  box-shadow: 0 9px #999;
+  color: #fff;
+  background-color: #1a1c1b;
+
+}
+button:hover {background-color: #070707}
+
+button:active {
+  background-color: #000000;
+  box-shadow: 0 5px #666;
+  transform: translateY(5px);
+}
+
+background{
+    color: #ffffff
+}

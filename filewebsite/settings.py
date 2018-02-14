@@ -101,6 +101,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'noob',
+<<<<<<< HEAD
         #CHANGE THIS
         'USER': 'postgres',
         'PASSWORD':'xhV6F9yb',
@@ -108,6 +109,12 @@ DATABASES = {
         #'PASSWORD':'pass1111',
         #'HOST':'localhost',
         #'POST':'',
+=======
+        'USER': 'filerepo',
+        'PASSWORD':'pass1111',
+        'HOST':'localhost',
+        'POST':'',
+>>>>>>> af3a2cc76269a703f1260eb2626ea35b20fec3d5
     }
 }
 
@@ -152,6 +159,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS=(
     os.path.join(BASE_DIR, 'static'),
+   # '/root/FileRepository/static/css/Style.css'
+    #'C:/Users/Samuel/Desktop/Enviroment/CS1813_2018_03/static/css/Style.css'
+    #Replace this with own path to static asset
 )
 
 MEDIA_URL =  '/media/'
