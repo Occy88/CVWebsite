@@ -143,11 +143,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
-STATIC_ROOT= '/root/filewebsite/static/'
+
 STATIC_URL = '/static/'
 STATICFILES_DIRS=(
     os.path.join(BASE_DIR, 'static'),
-    '/root/FileRepository/static/css/Style.css'
+   # '/root/FileRepository/static/css/Style.css'
     #'C:/Users/Samuel/Desktop/Enviroment/CS1813_2018_03/static/css/Style.css'
     #Replace this with own path to static asset
 )
