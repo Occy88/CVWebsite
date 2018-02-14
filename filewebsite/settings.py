@@ -42,7 +42,7 @@ if ENV_ROLE == 'development':
     TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = ['*']
-###ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = []
 
 #######################
 # Application definition
@@ -76,7 +76,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': ['/root/FileRepository/'],
-        ###'DIRS': ['D:/softwaredevfiles/CS1813_2018_03'],
+        ####'DIRS': ['D:/softwaredevfiles/CS1813_2018_03'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -99,8 +99,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'noob',
-        ###'USER': 'postgres',
-        ###'PASSWORD':'xhV6F9yb',
+        #'USER': 'postgres',
+        #'PASSWORD':'xhV6F9yb',
         'USER':'filerepo',
         'PASSWORD':'pass1111',
         'HOST':'localhost',

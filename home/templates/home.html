@@ -10,12 +10,21 @@
         <a href="group_list/"class="btn btn-outline-dark" role="button">view groups</a>
     </div>
 </div>
+<h3>Uploaded Files (Global)</h3>
 {% for d in document %}
-            {% if user in d.group.members.all or user.is_superuser %}
-                <h3></h3>
-                <a href= "{{d.group.get_absolute_urlf}}" class="btn btn-outline-dark" role="button">{{d.filename}} ID: {{d.id}}</a>
-            {% endif %}
-        {% endfor %}
+    {% if user in d.group.members.all or user.is_superuser %}
+        <h3></h3>
+        <a href= "{{d.group.get_absolute_urlf}}" class="btn btn-outline-dark" role="button">{{d.filename}} ID: {{d.id}}</a>
+    {% endif %}
+{% endfor %}
 
+
+{% for u in users %}
+    {% for l in log %}
+        {% if u == l.user %}
+            <h4>{{l.time}}: {{l.user.username}} {{l.action}} {{l.name}}</h4>
+        {% endif %}
+    {% endfor %}
+{% endfor %}
 {%endblock%}
 

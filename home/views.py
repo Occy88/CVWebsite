@@ -6,14 +6,17 @@ from django.contrib.auth.models import User
 from django.shortcuts import reverse,redirect, get_object_or_404
 import os
 from django.core.files import File
-from home.models import Document, Group, GroupComment, DocumentComment
+from home.models import Document, Group, GroupComment, DocumentComment, Log
 from home.forms import DocumentForm, GroupRegistrationForm, GroupCommentForm, DocumentCommentForm
 
 #home page:
 def home(request):
     user=request.user
+    users=User.objects.all()
     document = Document.objects.all()
-    context = {'user': user, 'document': document}
+    log = Log.objects.all()
+    context = {'user': user, 'document': document, 'log': log, 'users': users}
+
     return render(
         request, 'home/templates/home.html', context
 
@@ -87,7 +90,9 @@ def group_register(request):
     if request.method == 'POST':
         form = GroupRegistrationForm(request.POST)
         if form.is_valid():
-            form.save()
+            instance = form.save(commit=False)
+            instance.creator = request.user.id
+            instance.save()
 
             return HttpResponseRedirect(reverse('home:group_list'))
     else:
