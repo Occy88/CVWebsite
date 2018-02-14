@@ -21,8 +21,11 @@ class Group(models.Model):
         return reverse('home:group_detail_files',kwargs={'id':self.id})
 
 class Document(models.Model):
+    name = models.CharField(max_length=50, default="")
     group=models.ForeignKey(Group,default=1,on_delete=models.CASCADE)
     docfile = models.FileField(upload_to='documents',null=True)
+    creator=models.IntegerField(default=1)
+
     def get_absolute_url(self):
         return reverse('home:group_detail_files',kwargs={'id':self.group.id})
 
@@ -66,9 +69,9 @@ class Log(models.Model):
 def create_group(sender, instance, *args, **kwargs):
     log = Log()
     if instance in Group.objects.all():
-        log.action = "edited"
+        log.action = "edited group"
     else:
-        log.action = "created"
+        log.action = "created group"
     log.name = instance.name
     user = get_object_or_404(User, id=instance.creator)
     log.user = user
@@ -77,14 +80,14 @@ def create_group(sender, instance, *args, **kwargs):
 @receiver(models.signals.post_delete, sender=Group)
 def delete_group(sender, instance, *args, **kwargs):
     log = Log()
-    log.action = "deleted"
+    log.action = "deleted group"
     log.name = instance.name
     user = get_object_or_404(User, id=instance.creator)
     log.user = user
     log.save()
 #---GROUP COMMENTS
 @receiver(models.signals.pre_save, sender=GroupComment)
-def create_group(sender, instance, *args, **kwargs):
+def create_group_comment(sender, instance, *args, **kwargs):
     log = Log()
     if instance in GroupComment.objects.all():
         log.action = "edited comment:"
@@ -96,7 +99,7 @@ def create_group(sender, instance, *args, **kwargs):
     log.save()
 
 @receiver(models.signals.post_delete, sender=GroupComment)
-def delete_group(sender, instance, *args, **kwargs):
+def delete_group_comment(sender, instance, *args, **kwargs):
     log = Log()
     log.action = "deleted comment:"
     log.name = instance.title
@@ -104,8 +107,49 @@ def delete_group(sender, instance, *args, **kwargs):
     log.user = user
     log.save()
 
+#---DOCUMENTS
+@receiver(models.signals.pre_save, sender=Document)
+def create_document(sender, instance, *args, **kwargs):
+    log = Log()
+    if instance in Document.objects.all():
+        log.action = "edited document:"
+    else:
+        log.action = "added document:"
+    log.name = instance.name
+    user = get_object_or_404(User, id=instance.creator)
+    log.user = user
+    log.save()
 
+@receiver(models.signals.post_delete, sender=Document)
+def delete_document(sender, instance, *args, **kwargs):
+    log = Log()
+    log.action = "deleted document:"
+    log.name = instance.name
+    user = get_object_or_404(User, id=instance.creator)
+    log.user = user
+    log.save()
 
+#---DOCUMENTS
+@receiver(models.signals.pre_save, sender=DocumentComment)
+def create_document_comment(sender, instance, *args, **kwargs):
+    log = Log()
+    if instance in DocumentComment.objects.all():
+        log.action = "edited comment:"
+    else:
+        log.action = "added comment:"
+    log.name = instance.document.name
+    user = get_object_or_404(User, id=instance.creator)
+    log.user = user
+    log.save()
+
+@receiver(models.signals.post_delete, sender=DocumentComment)
+def delete_document_comment(sender, instance, *args, **kwargs):
+    log = Log()
+    log.action = "deleted document:"
+    log.name = instance.docuemnt.name
+    user = get_object_or_404(User, id=instance.creator)
+    log.user = user
+    log.save()
 
 
 

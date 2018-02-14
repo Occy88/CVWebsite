@@ -3,11 +3,13 @@ from django.contrib.auth.models import User
 from home.models import Group,Document, GroupComment, DocumentComment
 
 class DocumentForm(forms.ModelForm):
+    name = forms.CharField(label='Choose a name',max_length=50)
     docfile = forms.FileField(label='Select a file')
 
     class Meta:
         model=Document
         fields=[
+            'name',
             'docfile'
         ]
     def save(self, commit=True):
