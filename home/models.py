@@ -27,6 +27,7 @@ class Document(models.Model):
     group=models.ForeignKey(Group,default=1,on_delete=models.CASCADE)
     docfile = models.FileField(upload_to='documents',null=True)
     creator=models.IntegerField(default=1)
+    time = models.DateTimeField(default=datetime.now)
 
     def get_absolute_url(self):
         return reverse('home:group_detail_files',kwargs={'id':self.group.id})
