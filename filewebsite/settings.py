@@ -78,7 +78,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         #CHANGE THIS
         #'DIRS': ['/root/FileRepository/'],
-        'DIRS': ['D:/softwaredevfiles/CS1813_2018_03'],
+        'DIRS': ['C:/Users/hp/Desktop/Project/CS1813_2018_03'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -102,7 +102,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'noob',
         'USER': 'postgres',
-        'PASSWORD':'xhV6F9yb',
+        'PASSWORD':'0000',
     }
 }
 
@@ -165,9 +165,3 @@ LOGIN_EXEMPT_URLS={
     r'^account/password_reset/confirm/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$'#confirmed page
 
 }
-
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'filerepowebsite@gmail.com'
-EMAIL_HOST_PASSWORD = 'pass1111'
