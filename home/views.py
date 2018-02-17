@@ -48,9 +48,9 @@ def group_edit(request,id=None):
 
     form= GroupRegistrationForm(request.POST or None,instance=instance)
     if form.is_valid():
-        instance=form.save(commit=False)
+        instance=form.save()
         instance.modifier = request.user.id
-        instance.save()
+        instance=instance.save()
         # has read repair if members removed...
         for gc in GroupComment.objects.all():
             if gc.group == instance:
@@ -64,9 +64,7 @@ def group_edit(request,id=None):
                     if not uc in instance.members.all():
                         dc.hasRead.remove(uc)
                         dc.save()
-
-        print(instance.get_absolute_url())
-        return redirect(instance.get_absolute_url())
+        return redirect('home:group_list')
 
     user = request.user
     return render(request, 'home/templates/home_groups_edit.html', {'form': form, 'user': user})
