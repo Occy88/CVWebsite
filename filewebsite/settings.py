@@ -76,7 +76,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         #CHANGE THIS
         #'DIRS': ['C:/Users/hp/Desktop/Project/CS1813_2018_03'],
-        'DIRS': ['/root/FileRepository'],
+        'DIRS': ['C:/Users/hp/Desktop/Project/CS1813_2018_03'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -99,10 +99,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'noob',
-        'USER':'filerepo',
+        'USER':'postgres',
         #'USER': 'postgres',
         #pass1111
-        'PASSWORD':'pass1111',
+        'PASSWORD':'0000',
         'HOST':'localhost',
         'POST':'',
 

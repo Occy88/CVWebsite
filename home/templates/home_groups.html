@@ -15,7 +15,7 @@
         {% for g in groups %}
             {% if user in g.members.all or user.is_superuser %}
                 <div class="container-fluid">
-                    <div class="card" style=" width: 80rem;>
+                    <div class="card" style="width: 30rem;">
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-lg-5">
@@ -23,27 +23,21 @@
                                         <div class="container-fluid">
                                             <div class="panel-group">
                                                 <div class="panel panel-default">
-                                                    <div class="form-control">Group name: {{g.name}}</div>
+                                                    <div class="border-dark">Group name: {{g.name}}</div>
+                                                     <div class="container-fluid">
+                                                         <a href="{{g.id}}" class="btn btn-danger" role="button">group info</a>
+                                                     </div>
                                                     <div class="panel-body"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-                                            </div>
-                                            </div>
-                                    </div>
-                                </div>
-                                </div>
-                            {%for m in g.members.all%}
-                                <div class="m-3">
-                                    <h2>Users:<h2>
-                                <h5 class="card-columns">-{{m.username}}</h5>
-                                    </div>
-                            {% endfor %}
-                            <div class="flex-row">
-                                <a href="{{g.id}}" class="btn btn-danger" role="button">group info</a>
-                            </div>
-                </div>
+                        </div>
                     </div>
                 </div>
-                    &nbsp;
+                    &nbsp;</div>
             {% endif %}
         {% endfor %}
     </div>
