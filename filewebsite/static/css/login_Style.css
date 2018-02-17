@@ -13,10 +13,9 @@ div{
     position: fixed;
   top: 50%;
   left: 40%;
-  margin-top: -50px;
-  margin-left: -100px;
+  margin-top: -30px;
+  margin-left: -60px;
 }
-
 h1{
     color:#6c757d;
 }

@@ -1,7 +1,6 @@
 h1, h2, h2 h3, h5, h6{
 
     font-family: "Garamond";
-    text-decoration: underline;
     color: darkgrey;
 }
 body{
@@ -22,6 +21,7 @@ p, ul, ol, dl, dd,{
 Username{
   color:#5a6268;
 }
+
 a{
   font-family: "Garamond";
   font-weight:"00"
