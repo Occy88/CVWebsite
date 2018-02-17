@@ -1,38 +1,42 @@
-h1, h2, h2 h3, h5, h6{
-
-    font-family: "Garamond";
-    color: darkgrey;
-}
 body{
     margin : 0;
     padding : 0;
-    background-size : auto;
+    background-color:whitesmoke;
+    background-size : cover;
     background-image: url("background2.png");
     background-position: center;
     font-family:sans-serif;
 
 }
+
+div{
+    position: fixed;
+  top: 20%;
+  left: 35%;
+  margin-top: -30px;
+  margin-left: -60px;
+}
+h1{
+    color:#000000;
+}
+
 p, ul, ol, dl, dd,{
   font-family: "Garamond";
   font-weight: "300";
 
 }
-Username{
-  color:#5a6268;
-}
-
 a{
   font-family: "Garamond";
   font-weight:"00"
 }
 button {
   display: inline-block;
-  padding: 25px 25px;
-  font-size: 24px;
+  padding: 10px 110px;
+  font-size: 15px;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
-  border-radius: 13px;
+  border-radius: 5px;
   box-shadow: 0 9px #999;
   color: #fff;
   background-color: #1a1c1b;
@@ -41,11 +45,7 @@ button {
 button:hover {background-color: #070707}
 
 button:active {
-  background-color: #000000;
+  background-color: #0000;
   box-shadow: 0 5px #666;
   transform: translateY(5px);
-}
-
-background{
-    color: #ffffff
 }
