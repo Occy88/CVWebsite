@@ -48,7 +48,7 @@ def delete_file(sender, instance, *args, **kwargs):
 class GroupComment(models.Model):
     title = models.CharField(max_length=100)
     comment=models.CharField(max_length=500)
-    hasRead = models.ManyToManyField(User, related_name='hasRead')
+    hasRead = models.ManyToManyField(User)
     group=models.ForeignKey(Group, default=1,on_delete=models.CASCADE)
     def get_absolute_url(self):
         return reverse('home:group_detail_files',kwargs={'id':self.group.id})
@@ -56,7 +56,7 @@ class GroupComment(models.Model):
 class DocumentComment(models.Model):
     title=models.CharField(max_length=100)
     comment=models.CharField(max_length=500)
-    hasRead = models.ManyToManyField(User, related_name='hasRead')
+    hasRead = models.ManyToManyField(User)
     document=models.ForeignKey(Document, default=1,on_delete=models.CASCADE)
     def get_absolute_url(self):
         id=self.document.group.id
