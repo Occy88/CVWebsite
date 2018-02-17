@@ -1,31 +1,41 @@
 {% extends 'home/templates/base.html' %}
+{% load staticfiles %}
 {% block head %}
 <title>Group</title>
+<link rel="stylesheet" type="text/css" href="{% static '/css/groups_Style.css' %}">
 {% endblock %}
 {% block body %}
 <div class="container-fluid">
-    <h2>Group Name: {{group.name}} </h2>
+    <div class="form-control"> <h2>Group Name: {{group.name}} </h2> </div>
+    &nbsp;
 
     <div class="container-fluid">
+
         <div class="row">
             <div class="col-1">
                 {% if user in group.isLeader.all or user.is_superuser %}
-                    <a href="edit/" class="btn btn-outline-dark" role="button">Edit Group</a>
-                    <a href="delete/" class="btn btn-outline-dark" role="button">Delete Group</a>
-                    <a href="files/" class="btn btn-outline-dark" role="button">View Files</a>
-                    <a href="comment/" class="btn btn-outline-dark" role="button">Add Comment</a>
+                    <a href="edit/" class="btn btn-secondary" role="button">Edit Group</a>
+                &nbsp;
+                    <a href="delete/" class="btn btn-secondary" role="button">Delete Group</a>
+                &nbsp;
+                    <a href="files/" class="btn btn-secondary" role="button">View Files</a>
+                &nbsp;
+                    <a href="comment/" class="btn btn-secondary" role="button">Add Comment</a>
 
                 {% else %}
                     <a href="files/" class="btn btn-info" role="button">View Files</a>
+                &nbsp;
                     <a href="comment/" class="btn btn-info" role="button">Add Comment</a>
                 {% endif %}
 
             </div>
+            <div class="m-2">
             <div class="col-lg-6">
                 <h3>Members:</h3>
                 {% for m in group.members.all %}
                     <h4>{{m.username}} </h4>
                 {% endfor %}
+            </div>
             </div>
         </div>
 

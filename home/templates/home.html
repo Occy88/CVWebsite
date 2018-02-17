@@ -53,16 +53,14 @@
       <div class="caption">
         <h3>My Files</h3>
         <p>View existing files</p>
-        <p><a href="#" class="btn btn-secondary" role="button">View</a></p>
+        {% for d in document %}
+         {% if user in d.group.members.all or user.is_superuser %}
+        <p><a href="{{d.group.get_absolute_urlf}}" class="btn btn-secondary" role="button">View</a></p>
       </div>
     </div>
   </div>
 </div>
 </div>
-{% for d in document %}
-            {% if user in d.group.members.all or user.is_superuser %}
-                <h3></h3>
-                <a href= "{{d.group.get_absolute_urlf}}" class="btn btn-secondary" role="button">{{d.filename}} ID: {{d.id}}</a>
             {% endif %}
         {% endfor %}
 

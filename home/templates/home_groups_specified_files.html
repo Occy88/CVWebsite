@@ -1,39 +1,42 @@
 {% extends 'home/templates/base.html' %}
+{% load staticfiles %}
 {% block head %}
 <title>Groups list</title>
+<link rel="stylesheet" type="text/css" href="{% static '/css/groups_Style.css' %}">
 {% endblock %}
 {% block body %}
 <div class="container-fluid">
     <h2>Group Files:</h2>
-    <a href="upload/" class="btn btn-info" role="button">Upload File</a>
+    <a href="upload/" class="btn btn-secondary" role="button">Upload File</a>
     <br>
     <br>
-
     <div class="container-fluid">
 
             {% for d in document %}
                 {% if group == d.group %}
                     <div class="container-fluid">
-                        <div class="card" style="width: 25rem;">
+                        <div class="card" style="width: 80rem;">
                             <div class="container-fluid">
 
 
                                 <div class="row">
 
-                                     <div class="col-lg-6">
-                                        <h4>File Name: {{d.filename }}, Uploaded: {{d.time}} </h4>
+                                     <div class="col-lg-5">
+                                         <div class="form-control"> <h4>File Name: {{d.filename }}</h4></div>
+                                         <div class="form-control"> <h4>Uploaded: {{d.time}} </h4></div>&nbsp;
                                     </div>
-                                    <div class="col-auto">
-
+                                    <div class="col-10">
+                                        &nbsp;
                                         <a href="{{d.id}}/delete/" class="btn btn-outline-danger" role="button">delete</a>
                                         <a href="{{d.id}}/download/" class="btn btn-outline-success" role="button">download</a>
+
                                     </div>
 
                                 </div>
 
                                 {% for c in comment %}
                                     {% if d == c.document %}
-                                        <div class="card" style="width: 20rem;">
+                                        <div class="card" style="width: 25rem;">
                                             <div class="card card-body">
                                                  <p class="card-text">{{c.comment}}</p>
                                                 <h5>Comment Read By: </h5>
@@ -49,7 +52,7 @@
                                     {% endif %}
                                 {% endfor %}
                                 <br>
-                                <a href="{{d.id}}/comment/" class="btn btn-outline-dark" role="button">Add Comment</a>
+                                <a href="{{d.id}}/comment/" class="btn btn-secondary" role="button">Add Comment</a>
                             </div>
                         </div>
                     </div>

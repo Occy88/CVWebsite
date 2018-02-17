@@ -1,6 +1,8 @@
 {% extends 'home/templates/base.html' %}
+{% load staticfiles %}
 {% block head %}
 <title>Home</title>
+<link rel="stylesheet" type="text/css" href="{% static '/css/groups_Style.css' %}">
 {% endblock %}
 {%block body%}
         <!-- List of uploaded documents -->
