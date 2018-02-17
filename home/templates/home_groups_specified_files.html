@@ -35,8 +35,7 @@
                                     {% if d == c.document %}
                                         <div class="card" style="width: 20rem;">
                                             <div class="card card-body">
-                                                <h5 class="card-title">{{c.title}}</h5>
-                                                <p class="card-text">{{c.comment}}</p>
+                                                 <p class="card-text">{{c.comment}}</p>
                                                 <h5>Comment Read By: </h5>
                                                 {% for u in c.hasRead.all %}
                                                     <p class="card-text">{{ u.username }}</p>
