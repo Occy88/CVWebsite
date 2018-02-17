@@ -51,6 +51,20 @@ def group_edit(request,id=None):
         instance=form.save(commit=False)
         instance.modifier = request.user.id
         instance.save()
+        # has read repair if members removed...
+        for gc in GroupComment:
+            if gc.group == instance:
+                for uc in gc.hasRead.all():
+                    if not uc in instance.members.all():
+                        gc.hasRead.remove(uc)
+        gc.save()
+        for dc in DocumentComment:
+            if dc.document.group == instance:
+                for uc in dc.hasRead.all():
+                    if not uc in instance.members.all():
+                        dc.hasRead.remove(uc)
+        dc.save()
+
         print(instance.get_absolute_url())
         return redirect(instance.get_absolute_url())
 
@@ -67,6 +81,10 @@ def group_detail(request,id=None):
             thief = False
     if thief:
         raise Http404
+    for gc in GroupComment.objects.all():
+        if gc.group == instance:
+            gc.hasRead.add(request.user)
+            gc.save()
     comment=GroupComment.objects.all()
     group=instance
     context = {'group':group,'comment':comment}
@@ -122,6 +140,10 @@ def group_detail_files(request,id=None):
             thief=False
     if thief:
         raise Http404
+    for dc in DocumentComment.objects.all():
+        if dc.document.group == group:
+            dc.hasRead.add(request.user)
+            dc.save()
     comment=DocumentComment.objects.all()
     document=Document.objects.all()
     context = {'group':group,'document':document,'comment':comment}
