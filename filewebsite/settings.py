@@ -77,18 +77,8 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         #CHANGE THIS
-<<<<<<< HEAD
         #'DIRS': ['/root/FileRepository/'],
         'DIRS': ['D:/softwaredevfiles/CS1813_2018_03'],
-=======
-<<<<<<< HEAD
-        'DIRS': ['C:/Users/octav/Desktop/FileRepo/filesite/CS1813_2018_03'],
-        #'DIRS': ['/root/FileRepository'],
-=======
-        #'DIRS': ['C:/Users/hp/Desktop/Project/CS1813_2018_03'],
-        'DIRS': ['C:/Users/hp/Desktop/Project/CS1813_2018_03'],
->>>>>>> 75b91c1dfac4e104d2759d35f5004b366673aedf
->>>>>>> ddd428fe8b0a2d31f3d5981f7f7b5a2c7e2bae30
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -111,27 +101,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'noob',
-<<<<<<< HEAD
         'USER': 'postgres',
         'PASSWORD':'xhV6F9yb',
-=======
-<<<<<<< HEAD
-        #'USER':'filerepo',
-        'USER': 'postgres',
-        #pass1111
-        'PASSWORD':'',
-        # 'HOST':'localhost',
-        # 'POST':'',
-=======
-        'USER':'postgres',
-        #'USER': 'postgres',
-        #pass1111
-        'PASSWORD':'0000',
-        'HOST':'localhost',
-        'POST':'',
->>>>>>> 75b91c1dfac4e104d2759d35f5004b366673aedf
-
->>>>>>> ddd428fe8b0a2d31f3d5981f7f7b5a2c7e2bae30
     }
 }
 
