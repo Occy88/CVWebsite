@@ -52,13 +52,13 @@ def group_edit(request,id=None):
         instance.modifier = request.user.id
         instance.save()
         # has read repair if members removed...
-        for gc in GroupComment:
+        for gc in GroupComment.objects.all():
             if gc.group == instance:
                 for uc in gc.hasRead.all():
                     if not uc in instance.members.all():
                         gc.hasRead.remove(uc)
         gc.save()
-        for dc in DocumentComment:
+        for dc in DocumentComment.objects.all():
             if dc.document.group == instance:
                 for uc in dc.hasRead.all():
                     if not uc in instance.members.all():
