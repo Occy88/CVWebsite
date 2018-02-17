@@ -50,7 +50,8 @@ def group_edit(request,id=None):
     if form.is_valid():
         instance=form.save()
         instance.modifier = request.user.id
-        instance=instance.save()
+        instance.save()
+        instance= get_object_or_404(id=id)
         for gc in GroupComment.objects.all():
             if gc.group == instance:
                 print("group found")
