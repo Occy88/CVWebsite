@@ -16,7 +16,9 @@ div .m-2{
   margin-left: -60px;
     background-color: gainsboro;
 }
-
+div.card{
+    background-color: gainsboro;
+}
 div .container{
     position: fixed;
   top: 50%;
@@ -56,4 +58,10 @@ button:active {
   background-color: #0000;
   box-shadow: 0 5px #666;
   transform: translateY(5px);
+}
+h5{
+    font-size: 15px;
+}
+h2{
+    font-size:30px
 }

@@ -1,14 +1,15 @@
 {% extends 'home/templates/base.html' %}
-
+{% load staticfiles %}
 {% block head %}
 <title>Group Comment Create</title>
+<link rel="stylesheet" type="text/css" href="{% static '/css/groups_Style.css' %}">
 {% endblock %}
 
 {% block body %}
 <div class="container" >
-<h1>Welcome</h1>
+<h1>Comment</h1>
 <p1>
-  You can create a new group comment here
+  Add a comment that can be seen by the other users
 </p1>
 <form method="post">
   {% csrf_token %}

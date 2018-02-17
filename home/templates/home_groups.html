@@ -1,7 +1,7 @@
 {% extends 'home/templates/base.html' %}
 {% load staticfiles %}
 {% block head %}
-<link rel="stylesheet" type="text/css" href="{% static '/css/Style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static '/css/groups_Style.css' %}">
 
 <title>Groups list</title>
 {% endblock %}
@@ -15,12 +15,12 @@
         {% for g in groups %}
             {% if user in g.members.all or user.is_superuser %}
                 <div class="container-fluid">
-                    <div class="card" style=" width: 80rem;">
+                    <div class="card" style=" width: 80rem;>
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-lg-5">
                                     <div class="align-content-lg-stretch">
-                                        <div class="container">
+                                        <div class="container-fluid">
                                             <div class="panel-group">
                                                 <div class="panel panel-default">
                                                     <div class="form-control">Group name: {{g.name}}</div>
@@ -33,15 +33,15 @@
                                 </div>
                             </div>
                             {%for m in g.members.all%}
-                                <h5 class="card-columns">{{m.username}}</h5>
+                                <div class="m-3">
+                                    <h2>Users:<h2>
+                                <h5 class="card-columns">-{{m.username}}</h5>
+                                    </div>
                             {% endfor %}
                             <div class="flex-row">
                                 <a href="{{g.id}}" class="btn btn-danger" role="button">group info</a>
                             </div>
-                            <br>
-
-
-                        </div>
+                </div>
                     </div>
                 </div>
                     &nbsp;
