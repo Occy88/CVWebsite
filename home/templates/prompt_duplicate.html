@@ -1,0 +1,17 @@
+{% extends 'home/templates/base.html' %}
+{% load staticfiles %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{% static '/css/groups_Style.css' %}">
+
+<title>Duplicate File</title>
+{% endblock %}
+{%block body%}
+<div class="container-fluid">
+    <div class="cointainer">
+    <div class="container-fluid">
+        <p>This file already exists within that group!</p>
+    </div>
+</div>
+</div>
+
+{%endblock%}

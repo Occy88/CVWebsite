@@ -24,4 +24,5 @@ urlpatterns = [
     url(r'^group_list/(?P<id>\d+)/files/(?P<idf>\d+)/delete/$', views.group_detail_files_delete, name='group_detail_files_delete'),
     url(r'^group_list/(?P<id>\d+)/files/(?P<idf>\d+)/download/$', views.group_detail_files_download, name='group_detail_files_download'),
     url(r'^clear/$', views.log_clear, name='log_clear'),
+    url(r'^prompt/duplicate/$', views.prompt_duplicate, name = 'prompt_duplicate'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

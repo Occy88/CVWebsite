@@ -4,7 +4,7 @@ from django.template import RequestContext
 from django.contrib.auth.models import User
 
 from django.shortcuts import reverse,redirect, get_object_or_404
-import os
+import os, hashlib
 from django.core.files import File
 from home.models import Document, Group, GroupComment, DocumentComment, Log
 from home.forms import DocumentForm, GroupRegistrationForm, GroupCommentForm, DocumentCommentForm
@@ -166,6 +166,7 @@ def group_detail_files_download(request,id=None,idf=None):
     # Handle file upload
     doc = get_object_or_404(Document, id=idf)
     path= doc.docfile.path
+    print(path)
     if os.path.isfile(path):
         f=open(path,'rb')
         file=File(f)
@@ -191,10 +192,23 @@ def group_detail_files_upload(request,id=None):
         print(str(form.errors))
         if form.is_valid():
             print("valid")
-            instance= form.save(commit=False)
+            instance = form.save(commit=False)
             instance.modifier = request.user.id
-            instance.group=group
+            instance.group = group
             instance.save()
+            path = instance.docfile.path
+            if os.path.isfile(path):
+                hasher = hashlib.md5()
+                f = open(path, 'rb')
+                buf = f.read()
+                hasher.update(buf)
+                instance.filehash = hasher.hexdigest()
+                instance.save()
+                for d in Document.objects.all():
+                    if d.group == group:
+                        if instance.filehash == d.filehash and instance.id != d.id:
+                            instance.delete
+                            return redirect('home:prompt_duplicate')
 
             return redirect(instance.get_absolute_url())
     else:
@@ -314,3 +328,5 @@ def log_clear(self):
 
     return redirect('home:home')
 
+def prompt_duplicate(request):
+    return render(request, 'home/templates/prompt_duplicate.html')
