@@ -11,13 +11,13 @@ body{
 
 div{
     position: fixed;
-  top: 50%;
+  top: 40%;
   left: 40%;
   margin-top: -30px;
   margin-left: -60px;
 }
 h1{
-    color:#6c757d;
+    color:#000000;
 }
 
 p, ul, ol, dl, dd,{

@@ -3,57 +3,32 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-<!DOCTYPE html>
-<html lang="en">
+
 <head>
 
     {% block head %}
     <meta charset="UTF-8">
     <title>Title</title>
-
-    <h1>Base</h1>
     {% endblock %}
 </head>
 
-<body background="background.png">
-    <br>
+ <nav class="navbar navbar-expand-sm bg-light navbar-light ">
 
-
- <nav class="navbar navbar-expand-sm bg-transparent navbar-light">
   <!-- Brand -->
-  <a class="navbar-brand mr-auto " >File Repo</a>
-
+  <a class="navbar-brand" >File Repo</a>
+ {% if user.is_authenticated %}
+  <a href="{% url 'home:group_list' %}" class="btn btn-secondary mr-3" role="button">My Groups</a>
+    <a href="{% url 'home:home' %}" class="btn btn-secondary ml-3" role="button">My Files</a>
+    <a href="{% url 'home:home' %}" class="btn btn-secondary ml-3 mr-auto" role="button">Reports</a>
+    <a href="{% url 'home:home' %}" class="btn btn-secondary mr-3" role="button">Profile</a>
+    <a href="{% url 'accounts:logout' %}" class="btn btn-secondary  mr-3 " role="button">Logout</a>
+{% else %}
+    <a href="{% url 'accounts:register' %}"class="btn btn-secondary  ml-auto mr-3 " role="button">Register</a>
+     <a href="{% url 'accounts:password_reset' %}" class="btn btn-secondary  mr-3 " role="button">Edit Profile</a>
+    <a href="{% url 'accounts:login' %}" class="btn btn-secondary  mr-3 " role="button">Login</a>
+ {% endif %}
   <!-- Links -->
-  <ul class="navbar-nav ">
 
-
-    <!-- Dropdown -->
-    <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-        Navigate
-      </a>
-
-        {% if user.is_authenticated %}
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="{% url 'home:home' %}">Home <span class="sr-only">(current)</span></a>
-          <a class="dropdown-item" href="{% url 'accounts:logout' %}">Logout</a>
-          <a class="dropdown-item" href="{% url 'accounts:edit_profile' %}">Edit Profile</a>
-          <a class="dropdown-item" href="{% url 'accounts:change_password' %}">change password</a>
-          <a class="dropdown-item" href="{% url 'home:group_register' %}">Create Group</a>
-          <a class="dropdown-item" href="{% url 'home:group_list' %}">View Groups</a>
-          <a class="dropdown-item" href="#">Disabled</a>
-        </div>
-            {% else %}
-          <div class="dropdown-menu">
-          <a class="dropdown-item" href="{% url 'accounts:login' %}">Login</a>
-          <a class="dropdown-item" href="{% url 'accounts:register' %}">Register</a>
-          <a class="dropdown-item" href="#">Disabled</a>
-          <a class="dropdown-item" href="{% url 'accounts:password_reset' %}">Reset Pass</a>
-
-        </div>
-          {%endif%}
-    </li>
-  </ul>
 </nav>
 
 
