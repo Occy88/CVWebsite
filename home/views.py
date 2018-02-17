@@ -57,13 +57,13 @@ def group_edit(request,id=None):
                 for uc in gc.hasRead.all():
                     if not uc in instance.members.all():
                         gc.hasRead.remove(uc)
-        gc.save()
+                        gc.save()
         for dc in DocumentComment.objects.all():
             if dc.document.group == instance:
                 for uc in dc.hasRead.all():
                     if not uc in instance.members.all():
                         dc.hasRead.remove(uc)
-        dc.save()
+                        dc.save()
 
         print(instance.get_absolute_url())
         return redirect(instance.get_absolute_url())
