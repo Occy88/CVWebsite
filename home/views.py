@@ -53,7 +53,9 @@ def group_edit(request,id=None):
         instance=instance.save()
         for gc in GroupComment.objects.all():
             if gc.group == instance:
+                print("group found")
                 for uc in gc.hasRead.all():
+                    print("users found")
                     if uc not in instance.members.all():
                         gc.hasRead.remove(uc)
                         print("user removed")
