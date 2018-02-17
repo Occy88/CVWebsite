@@ -28,6 +28,7 @@ class Document(models.Model):
     docfile = models.FileField(upload_to='documents',null=True)
     creator=models.IntegerField(default=1)
     time = models.DateTimeField(default=datetime.now)
+    filehash = models.CharField(max_length=100, default="")
 
     def get_absolute_url(self):
         return reverse('home:group_detail_files',kwargs={'id':self.group.id})

@@ -2,43 +2,50 @@
 {% load staticfiles %}
 {% block head %}
 <link rel="stylesheet" type="text/css" href="{% static '/css/groups_Style.css' %}">
-
 <title>Groups list</title>
 {% endblock %}
 {%block body%}
 <div class="container-fluid">
-    <div class="cointainer">
-     <h2>Groups: &nbsp; <a href="{% url 'home:group_register' %}" class="btn btn-secondary" role="button">New group</a></h2>
+    <h2>Groups:</h2>
+    <a href="{% url 'home:group_register' %}" class="btn btn-info" role="button">New Group</a>
     <br>
     <br>
     <div class="container-fluid">
         {% for g in groups %}
             {% if user in g.members.all or user.is_superuser %}
                 <div class="container-fluid">
-                    <div class="card" style="width: 30rem;">
+                    <div class="card" style="width: 25rem;">
                         <div class="container-fluid">
                             <div class="row">
-                                <div class="col-lg-5">
-                                    <div class="align-content-lg-stretch">
-                                        <div class="container-fluid">
-                                            <div class="panel-group">
-                                                <div class="panel panel-default">
-                                                    <div class="border-dark">Group name: {{g.name}}</div>
-                                                     <div class="container-fluid">
-                                                         <a href="{{g.id}}" class="btn btn-danger" role="button">group info</a>
-                                                     </div>
-                                                    <div class="panel-body"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="col-lg-6">
+                                    <h3>group name:{{g.name}}</h3>
                                 </div>
+                            </div>
+                            <div class="flex-row">
+                                <table width = "100%">
+                                    <tr>
+                                        <td width="30%">
+                                <a href="{{g.id}}" class="btn btn-danger" role="button">group info</a>
+                                        </td>
+                                        <td width = "70%">
+                                            <div align="right" text-align="right">
+                            {%for m in g.members.all%}
+                                <h5 class="card-columns">{{m.username}}</h5>
+                            {% endfor %}
+                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <br>
+
 
                         </div>
+
                     </div>
                 </div>
-                    &nbsp;</div>
             {% endif %}
+    </br>
         {% endfor %}
     </div>
 </div>
