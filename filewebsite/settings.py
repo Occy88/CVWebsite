@@ -76,7 +76,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         #CHANGE THIS
         #'DIRS': ['C:/Users/hp/Desktop/Project/CS1813_2018_03'],
-        'DIRS': ['root/FileRepository/'],
+        'DIRS': ['root/FileRepository'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
