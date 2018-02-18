@@ -24,7 +24,7 @@
       {% if user in g.members.all %}
       <div class="col-auto">
          <div class="container-fluid">
-            <div class="card bg-light">
+            <div class="card bg-transparent">
                <div class="container-fluid">
                   <div class="card-block">
                      <h3 class="card-title">{{ g.name }}</h3>
@@ -45,7 +45,7 @@
       {% if d.creator == user.id %}
       <div class="col-auto">
          <div class="container-fluid">
-            <div class="card bg-light">
+            <div class="card bg-transparent ">
                <div class="container-fluid">
                   <div class="card-block">
                      <h3 class="card-title">{{ d.name }}&nbsp; <a href="{{ d.group.get_absolute_url }}files/" class="btn btn-outline-dark">view file</a>
@@ -69,7 +69,7 @@
              {% for g in group %}
                 {% if l.group == g.id %}
                  {% if user in g.members.all %}
-                     <p>{{ l.user.username }}, {{ l.action }}  {{ l.name }} at: {{ l.time }}</p>
+                     <p>{{ l.user.username }}, {{ l.action }}  {{ l.name }} on: {{ l.time }}</p>
 
                  {% endif %}
                  {% endif %}
