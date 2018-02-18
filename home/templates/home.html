@@ -3,49 +3,76 @@
 {% block head %}
 <title>Home</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
 <link rel="stylesheet" type="text/css" href="{% static '/css/Style.css' %}">
-{% load static %}
+<style>
+* {
+    box-sizing: border-box;
+}
 
+body {
+    margin: 0;
+}
+
+/* Create three equal columns that floats next to each other */
+.container-fixed {
+    float: left;
+    width: 33.33%;
+    padding: 10px;
+    height: 300px;
+
+}
+.container-fixed > h2{
+  text-align: center;
+}
+.container-fixed > a{
+  button: center;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+    .Username{
+        font-size: 29px;
+         color:#5a6268;
+        font-family: "Bodoni MT Poster Compressed";
+    }
+</style>
 {% endblock %}
 {%block body%}
+<span class="Username">{{user.username}}</span>
 
-        <!-- List of uploaded documents -->
-<div class="container">
-<h1>
-  <span class="Username">{{user.username}}</span>
-</h1>
-</div>
-<div class="container">
 <div class="row">
-  <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-    <div class="thumbnail">
-      <img src="/static/create.png" height ="100" width="100"/>
-      <div class="caption">
-        <h3>Create</h3>
-        <p>Create a new group and share files</p>
-        <p><a href="{% url 'home:group_register' %}" class="btn btn-secondary" role="button">Create</a></p>
-      </div>
-      </div>
+  <div class="container-fixed" style="background-color:transparent;">
+    <h2>My Groups</h2>
+    <ol>
+      <li> <a href="#" class="btn btn-danger" role="button">"Group Name"</a></li>
+      &nbsp;
+      <li><a href="#" class="btn btn-danger" role="button">"Group Name"</a></li>
+      &nbsp;
+      <li><a href="#" class="btn btn-danger" role="button">"Group Name"</a></li>
+      &nbsp;
+      <li><a href="#" class="btn btn-danger" role="button">"Group Name"</a></li>
+    </ol>
   </div>
-
-  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-    <div class="thumbnail">
-        <img src="/static/files.png" height ="100" width="100"/>
-      <div class="caption">
-        <h3>My Files</h3>
-        <p>View existing files</p>
-        {% for d in document %}
-         {% if user in d.group.members.all or user.is_superuser %}
-        <p><a href="{{d.group.get_absolute_urlf}}" class="btn btn-secondary" role="button">View</a></p>
-      </div>
-    </div>
+  <div class="container-fixed" style="background-color:transparent;">
+    <h2>My Files</h2>
+     <ol>
+      <li> <a href="#" class="btn btn-danger" role="button">"File Name"</a></li>
+      &nbsp;
+      <li><a href="#" class="btn btn-danger" role="button">"File Name"</a></li>
+      &nbsp;
+      <li><a href="#" class="btn btn-danger" role="button">"File Name"</a></li>
+      &nbsp;
+      <li><a href="#" class="btn btn-danger" role="button">"File Name"</a></li>
+    </ol>
+  </div>
+  <div class="container-fixed" style="background-color:#bbb">
+    <h2>Logs</h2>
+        &nbsp;
   </div>
 </div>
-
-</div>
-            {% endif %}
-        {% endfor %}
-
 {%endblock%}
 
