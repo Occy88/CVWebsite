@@ -14,7 +14,14 @@ body {
 }
 
 /* Create three equal columns that floats next to each other */
-.container-fixed {
+.container-fixed-r {
+    float: left;
+    width: 33.33%;
+    padding: 10px;
+    height: 300px;
+
+}
+.container-fixed-l {
     float: left;
     width: 33.33%;
     padding: 10px;
@@ -45,7 +52,7 @@ body {
 <span class="Username">{{user.username}}</span>
 
 <div class="row">
-  <div class="container-fixed" style="background-color:transparent;">
+  <div class="container-fixed-l" style="background-color:transparent;">
     <h2>My Groups</h2>
     <ol>
       <li> <a href="#" class="btn btn-danger" role="button">"Group Name"</a></li>
@@ -57,7 +64,7 @@ body {
       <li><a href="#" class="btn btn-danger" role="button">"Group Name"</a></li>
     </ol>
   </div>
-  <div class="container-fixed" style="background-color:transparent;">
+  <div class="container-fixed-l" style="background-color:transparent;">
     <h2>My Files</h2>
      <ol>
       <li> <a href="#" class="btn btn-danger" role="button">"File Name"</a></li>
@@ -69,7 +76,7 @@ body {
       <li><a href="#" class="btn btn-danger" role="button">"File Name"</a></li>
     </ol>
   </div>
-  <div class="container-fixed" style="background-color:#bbb">
+  <div class="container-fixed-r" style="background-color:#bbb">
     <h2>Logs</h2>
         &nbsp;
   </div>
