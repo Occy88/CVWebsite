@@ -14,7 +14,7 @@
 
  <nav class="navbar navbar-expand-sm bg-dark navbar-light ">
 <div class="container">
-     <a href="{% url 'home:home' %}"><img class="Logo" src="/static/FR_Logo.png" height ="60" width="60"/>
+     <a href="{% url 'home:home' %}"><img class="Logo mr-auto" src="/static/FR_Logo.png" height ="60" width="60"/>
      </a>
      </div>
   <!-- Brand -->
@@ -23,7 +23,7 @@
 
  {% if user.is_authenticated %}
      <div class="container">
-  <a href="{% url 'home:group_list' %}" class="btn btn-secondary ml-auto mr-3" role="button">My Groups</a>
+  <a href="{% url 'home:group_list' %}" class="btn btn-secondary mr-3" role="button">My Groups</a>
 
     <a href="{% url 'home:home' %}" class="btn btn-secondary ml-3" role="button">My Files</a>
     <a href="{% url 'home:home' %}" class="btn btn-secondary ml-3 mr-auto" role="button">Reports</a>
