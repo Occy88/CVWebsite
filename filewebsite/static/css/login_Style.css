@@ -1,8 +1,9 @@
 body{
     margin : 0;
     padding : 0;
+    background-repeat: no-repeat;
     background-color:whitesmoke;
-    background-size : cover;
+    background-size : auto;
     background-image: url("background2.png");
     background-position: center;
     font-family:sans-serif;

@@ -42,8 +42,8 @@ if ENV_ROLE == 'development':
     TEMPLATE_DEBUG = DEBUG
 
 #CHANGE THIS
-#ALLOWED_HOSTS = ['*']
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+#ALLOWED_HOSTS = []
 
 #######################
 # Application definition
@@ -77,8 +77,10 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         #CHANGE THIS
-        #'DIRS': ['/root/FileRepository/'],
-        'DIRS': ['D:/softwaredevfiles/CS1813_2018_03'],
+
+        'DIRS': ['C:/Users/octav/Desktop/FileRepo/filesite/CS1813_2018_03'],
+       # 'DIRS': ['/root/FileRepository'],
+
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -101,8 +103,13 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'noob',
+        # 'USER':'filerepo',
         'USER': 'postgres',
-        'PASSWORD':'xhV6F9yb',
+        #pass1111
+        'PASSWORD':'',
+        # 'HOST':'localhost',
+        # 'POST':'',
+
     }
 }
 
@@ -147,10 +154,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS=(
     os.path.join(BASE_DIR, 'static'),
-    #'/root/FileRepository/static/css/Style.css'
-    #'C:/Users/Samuel/Desktop/Enviroment/CS1813_2018_03/static/css/Style.css'
-    'D:/softwaredevfiles/CS1813_2018_03/filewebsite/static/css'
-    #Replace this with own path to static asset
+
 )
 
 MEDIA_URL =  '/media/'

@@ -3,12 +3,53 @@
 {% block head %}
 <title>Home</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
 <link rel="stylesheet" type="text/css" href="{% static '/css/Style.css' %}">
-{% load static %}
+<style>
+* {
+    box-sizing: border-box;
+}
 
+body {
+    margin: 0;
+}
+
+/* Create three equal columns that floats next to each other */
+.container-fixed-r {
+    float: left;
+    width: 33.33%;
+    padding: 10px;
+    height: 300px;
+
+}
+.container-fixed-l {
+    float: left;
+    width: 33.33%;
+    padding: 10px;
+    height: 300px;
+
+}
+.container-fixed > h2{
+  text-align: center;
+}
+.container-fixed > a{
+  button: center;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+    .Username{
+        font-size: 29px;
+         color:#5a6268;
+        font-family: "Bodoni MT Poster Compressed";
+    }
+</style>
 {% endblock %}
 {%block body%}
+<span class="Username">{{user.username}}</span>
 
         <!-- List of uploaded documents -->
 <div class="container">
