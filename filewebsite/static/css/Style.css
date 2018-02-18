@@ -1,7 +1,7 @@
 h1, h2, h2 h3, h5, h6{
 
-    font-family: "Garamond";
-    color: darkgrey;
+    font-family: "sans-serif";
+    color: black
 	font-color: Red;
 }
 body{
@@ -57,12 +57,17 @@ div {
 }
 
 .right{
-	padding: 10px;
-	background-color: #ffffff;
+	
+	width: 30%;
 	float: right;
-	margin: 5%;
-	width: 90%;
+	top: 25%;
+	position: fixed;
 	height: auto;
+	left: 65%;
+	
+	
+
+	
 }
 
 .divide {
@@ -72,19 +77,19 @@ div {
 }
 
 .top {
-	width: 35%;
-	height: 250px;
+	width: 55%;
+	height: 35%;
 	position: fixed;
-	background-color: #ffffff;
-	top: 20%;
-	left: 15%;
+	
+	top: 25%;
+	left: 5%;
 }
 
 .bottom{
-	width: 35%;
-	height: 250px;
+	width: 55%;
+	height: 35%;
 	position: fixed;
-	background-color: #ffffff;
-	top: 60%;
-	left: 15%;
+	
+	top: 65%;
+	left: 5%;
 }

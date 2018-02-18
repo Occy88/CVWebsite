@@ -67,6 +67,7 @@ class DocumentComment(models.Model):
 #---------------LOGS-----------------
 class Log(models.Model):
     user=models.ForeignKey(User,default=1,on_delete=models.CASCADE)
+    group=models.IntegerField(default=0)
     action = models.CharField(max_length=30)
     name = models.CharField(max_length=100)
     time = models.DateTimeField(default=datetime.now)
@@ -76,6 +77,7 @@ def create_group(sender, instance, *args, **kwargs):
     log = Log()
     log.action = "created/edited group"
     log.name = instance.name
+    log.group = instance.id
     user = get_object_or_404(User, id=instance.modifier)
     log.user = user
     log.save()
@@ -85,6 +87,7 @@ def delete_group(sender, instance, *args, **kwargs):
     log = Log()
     log.action = "deleted group"
     log.name = instance.name
+    log.group = instance.id
     user = get_object_or_404(User, id=instance.modifier)
     log.user = user
     log.save()
@@ -97,6 +100,7 @@ def create_group_comment(sender, instance, *args, **kwargs):
     else:
         log.action = "added comment:"
     log.name = instance.title
+    log.group = instance.group.id
     user = get_object_or_404(User, id=instance.group.modifier)
     log.user = user
     log.save()
@@ -106,6 +110,7 @@ def delete_group_comment(sender, instance, *args, **kwargs):
     log = Log()
     log.action = "deleted comment:"
     log.name = instance.title
+    log.group = instance.group.id
     user = get_object_or_404(User, id=instance.group.modifier)
     log.user = user
     log.save()
@@ -119,6 +124,7 @@ def create_document(sender, instance, *args, **kwargs):
     else:
         log.action = "added document:"
     log.name = instance.name
+    log.group = instance.group.id
     user = get_object_or_404(User, id=instance.modifier)
     log.user = user
     log.save()
@@ -128,6 +134,7 @@ def delete_document(sender, instance, *args, **kwargs):
     log = Log()
     log.action = "deleted document:"
     log.name = instance.name
+    log.group = instance.group.id
     user = get_object_or_404(User, id=instance.modifier)
     log.user = user
     log.save()
@@ -142,6 +149,7 @@ def create_document_comment(sender, instance, *args, **kwargs):
     else:
         log.action = "added comment to:"
     log.name = instance.document.name
+    log.group = instance.document.group.id
     user = get_object_or_404(User, id=instance.document.modifier)
     log.user = user
     log.save()
@@ -151,6 +159,7 @@ def delete_document_comment(sender, instance, *args, **kwargs):
     log = Log()
     log.action = "deleted comment to:"
     log.name = instance.document.name
+    log.group = instance.document.group.id
     user = get_object_or_404(User, id=instance.document.modifier)
     log.user = user
     log.save()

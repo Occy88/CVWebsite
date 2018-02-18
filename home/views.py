@@ -15,7 +15,8 @@ def home(request):
     users=User.objects.all()
     document = Document.objects.all()
     log = Log.objects.all()
-    context = {'user': user, 'document': document, 'log': log, 'users': users}
+    group=Group.objects.all()
+    context = {'user': user, 'document': document, 'log': log, 'users': users,'group':group}
 
     return render(
         request, 'home/templates/home.html', context
