@@ -2,6 +2,7 @@ h1, h2, h2 h3, h5, h6{
 
     font-family: "Garamond";
     color: darkgrey;
+	font-color: Red;
 }
 body{
     margin : 0;
@@ -48,4 +49,42 @@ button:active {
 
 background{
     color: #ffffff
+}
+
+div {
+	height: auto;
+	width: ;
+}
+
+.right{
+	padding: 10px;
+	background-color: #ffffff;
+	float: right;
+	margin: 5%;
+	width: 90%;
+	height: auto;
+}
+
+.divide {
+	display:inline-block;
+	width: 50%;
+
+}
+
+.top {
+	width: 35%;
+	height: 250px;
+	position: fixed;
+	background-color: #ffffff;
+	top: 20%;
+	left: 15%;
+}
+
+.bottom{
+	width: 35%;
+	height: 250px;
+	position: fixed;
+	background-color: #ffffff;
+	top: 60%;
+	left: 15%;
 }

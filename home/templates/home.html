@@ -17,53 +17,27 @@
 </h1>
 </div>>
 <div class="container">
-<div class="row">
-  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-    <div class="thumbnail">
-      <img src="/static/create.png" height ="100" width="100"/>
-      <div class="caption">
-        <h3>Create</h3>
-        <p>Create a new group and share files</p>
-        <p><a href="{% url 'home:group_register' %}" class="btn btn-secondary" role="button">Create</a></p>
-      </div>
-      </div>
-  </div>
-  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-    <div class="thumbnail">
-        <img src="/static/groups.png" height ="100" width="100"/>
-      <div class="">
-        <h3>Manage</h3>
-        <p>Add or remove users from groups</p>
-        <p><a href="{% url 'home:group_list' %}" class="btn btn-secondary" role="button">View</a></p>
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-    <div class="thumbnail">
-        <img src="/static/upload.png" height ="100" width="100"/>
-      <div class="caption">
-        <h3>Upload</h3>
-        <p>Upload files now and share later</p>
-        <p><a href="#" class="btn btn-secondary" role="button">Upload</a></p>
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-    <div class="thumbnail">
-        <img src="/static/files.png" height ="100" width="100"/>
-      <div class="caption">
-        <h3>My Files</h3>
-        <p>View existing files</p>
-        {% for d in document %}
-         {% if user in d.group.members.all or user.is_superuser %}
-        <p><a href="{{d.group.get_absolute_urlf}}" class="btn btn-secondary" role="button">View</a></p>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-            {% endif %}
-        {% endfor %}
+<div class="divide">
+	<div class="top">
+		<h1>Groups</h1>
+		<p>Group 1</p>
+        <a href="{% url 'home:group_register' %}" class="btn btn-secondary" role="button">Create</a>
+        <a href="{% url 'home:group_list' %}" class="btn btn-secondary" role="button">View All</a>
+	</div>
+	<div class="bottom">
+		<h1>My Files</h1>
+		<p>File 1</p>
+	</div>
 
+	</div><div class="divide">
+	<div class="right">
+		<h1>Logs</h1>
+      {% for l in logs %}
+		<p>{{l.time}}: {{l.user.username}} {{l.action}} {{l.name}}</p>
+      {% endfor %}
+	</div>
+
+	</div>
+</div>
 {%endblock%}
 
