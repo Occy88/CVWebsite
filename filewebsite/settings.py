@@ -78,7 +78,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         #CHANGE THIS
 
-        'DIRS': ['C:/Users/octav/Desktop/FileRepo/filesite/CS1813_2018_03'],
+        'DIRS': ['D:/softwaredevfiles/CS1813_2018_03'],
        # 'DIRS': ['/root/FileRepository'],
 
         'APP_DIRS': True,
@@ -106,7 +106,7 @@ DATABASES = {
         # 'USER':'filerepo',
         'USER': 'postgres',
         #pass1111
-        'PASSWORD':'',
+        'PASSWORD':'xhV6F9yb',
         # 'HOST':'localhost',
         # 'POST':'',
 

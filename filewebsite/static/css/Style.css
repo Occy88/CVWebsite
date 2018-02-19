@@ -1,10 +1,9 @@
-h1, h2, h2 h3, h5, h6{
+h1, h2, h2 h3, h5, h6 {
 
     font-family: "sans-serif";
-    color: black
-	font-color: Red;
+    color: #000000;
 }
-body{
+body {
     margin : 0;
     padding : 0;
     background-size : auto;
@@ -13,16 +12,16 @@ body{
     font-family:sans-serif;
 
 }
-p, ul, ol, dl, dd,{
+p, ul, ol, dl, dd, {
   font-family: "Garamond";
   font-weight: "300";
 
 }
-Username{
+Username {
   color:#5a6268;
 }
 
-a{
+a {
   font-family: "Garamond";
   font-weight:"00"
 }
@@ -64,27 +63,21 @@ div {
 	position: fixed;
 	height: auto;
 	left: 65%;
-	
-	
-
-	
 }
 
 .divide {
 	display:inline-block;
 	width: 50%;
-
 }
 
 .top {
 	width: 55%;
 	height: 35%;
 	position: fixed;
-	
 	top: 25%;
 	left: 5%;
 }
-
+.padding {padding:10 0 0 25;}
 .bottom{
 	width: 55%;
 	height: 35%;

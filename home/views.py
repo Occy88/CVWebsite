@@ -22,7 +22,17 @@ def home(request):
         request, 'home/templates/home.html', context
 
     )
+#My Files page
+def ownfiles(request):
+    user = request.user
+    document = Document.objects.all()
+    group = Group.objects.all()
 
+    context = {'user': user, 'document':document, 'group':group}
+    return render(
+        request, 'home/templates/ownfiles.html', context
+
+    )
 
 #Group:
 def group_list(request):
@@ -322,6 +332,7 @@ def group_detail_files_comment_delete(request,id=None,idf=None,idc=None):
     instanceC.delete()
     return redirect(instanceF.get_absolute_url())
 
+#Log
 def log_clear(self):
     log= Log.objects.all()
     for l in log:
@@ -329,5 +340,6 @@ def log_clear(self):
 
     return redirect('home:home')
 
+#Duplicate Files
 def prompt_duplicate(request):
     return render(request, 'home/templates/prompt_duplicate.html')
