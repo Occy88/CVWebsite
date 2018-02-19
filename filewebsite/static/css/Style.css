@@ -27,12 +27,12 @@ a {
 }
 button {
   display: inline-block;
-  padding: 25px 25px;
-  font-size: 24px;
+  padding: 10px 110px;
+  font-size: 15px;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
-  border-radius: 13px;
+  border-radius: 5px;
   box-shadow: 0 9px #999;
   color: #fff;
   background-color: #1a1c1b;
