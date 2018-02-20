@@ -40,7 +40,7 @@ button {
   background-color: #1a1c1b;
 
 }
-button:hover {background-color: #070707}
+button:hover {background-color: #070707;}
 
 button:active {
   background-color: #000000;
@@ -48,8 +48,8 @@ button:active {
   transform: translateY(5px);
 }
 
-background{
-    color: #ffffff
+background {
+    color: #ffffff;
 }
 
 div {

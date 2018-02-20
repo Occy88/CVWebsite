@@ -78,10 +78,8 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         #CHANGE THIS
 
-
-       # 'DIRS': ['C:/Users/octav/Desktop/FileRepo/filesite/CS1813_2018_03'],
-        'DIRS': ['/root/FileRepository'],
-
+        'DIRS': ['D:/softwaredevfiles/CS1813_2018_03'],
+       # 'DIRS': ['/root/FileRepository'],
 
         'APP_DIRS': True,
         'OPTIONS': {
@@ -104,15 +102,13 @@ WSGI_APPLICATION = 'filewebsite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-
         'NAME': 'noob',
-        'USER':'filerepo',
-        # 'USER': 'postgres',
+        # 'USER':'filerepo',
+        'USER': 'postgres',
         #pass1111
-        'PASSWORD':'pass1111',
-        'HOST':'localhost',
-        'POST':'',
-
+        'PASSWORD':'xhV6F9yb',
+        # 'HOST':'localhost',
+        # 'POST':'',
 
     }
 }
