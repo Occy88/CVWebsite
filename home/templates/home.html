@@ -65,7 +65,7 @@
    <div class="divide">
       <div class="right">
          <h2>Logs</h2>
-         {% for l in log rever %}
+         {% for l in log reversed %}
              {% for g in group %}
                 {% if l.group == g.id %}
                  {% if user in g.members.all %}
