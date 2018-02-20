@@ -2,8 +2,8 @@
 h1, h2, h2 h3, h5, h6{
 
     font-family: "sans-serif";
-    color: black
-	font-color: Red;
+    color: black;
+	
 }
 body{
     margin : 0;
@@ -14,19 +14,12 @@ body{
     font-family:sans-serif;
 
 }
-p, ul, ol, dl, dd,{
-  font-family: "Garamond";
-  font-weight: "300";
 
-}
 Username{
   color:#5a6268;
 }
 
-a{
-  font-family: "Garamond";
-  font-weight:"00"
-}
+
 button {
   display: inline-block;
   padding: 25px 25px;
@@ -48,13 +41,9 @@ button:active {
   transform: translateY(5px);
 }
 
-background {
-    color: #ffffff;
-}
-
 div {
 	height: auto;
-	width: ;
+
 }
 
 .right{

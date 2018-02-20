@@ -78,7 +78,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         #CHANGE THIS
 
-        #'DIRS': ['D:/softwaredevfiles/CS1813_2018_03'],
+        #'DIRS': ['C:/Users/octav/Desktop/FileRepo/filesite/CS1813_2018_03'],
         'DIRS': ['/root/FileRepository'],
 
         'APP_DIRS': True,
