@@ -59,12 +59,14 @@ div {
 .right{
 	
 	width: 30%;
+    background-color:  	#F0F8FF;
+     border: 7px solid 	#F0F8FF ;
 	float: right;
 	top: 25%;
 	position: fixed;
 	height: auto;
 	left: 65%;
-	
+    border-radius: 25px;
 	
 
 	
@@ -80,16 +82,20 @@ div {
 	width: 55%;
 	height: 35%;
 	position: fixed;
-	
+	background-color:  	#F0F8FF;
+     border:7px solid 	#F0F8FF ;
 	top: 25%;
 	left: 5%;
+    border-radius: 25px;
 }
 
 .bottom{
 	width: 55%;
 	height: 35%;
 	position: fixed;
-	
+     border:7px solid 	#F0F8FF ;
+	background-color:  	#F0F8FF;
 	top: 65%;
 	left: 5%;
+    border-radius: 25px;
 }

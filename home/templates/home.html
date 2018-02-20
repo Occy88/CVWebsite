@@ -15,9 +15,8 @@
 <h1>{{ user.username }}</h1>
 <div class="divide">
 <div class="top">
-   <h2>Groups &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; <a href="{% url 'home:group_register' %}" class="btn btn-secondary" role="button">Create</a>
-      <a href="{% url 'home:group_list' %}" class="btn btn-secondary" role="button">View All</a>
-   </h2>
+   <h2>Groups &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; <a href="{% url 'home:group_register' %}" class="btn btn-outline-success" role="button">Create</a>
+      <a href="{% url 'home:group_list' %}" class="btn btn-outline-info" role="button">View All</a></h2>
    <br>
    <div class="row">
       {% for g in group %}
