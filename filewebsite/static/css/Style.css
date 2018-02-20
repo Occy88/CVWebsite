@@ -27,18 +27,18 @@ a {
 }
 button {
   display: inline-block;
-  padding: 25px 25px;
-  font-size: 24px;
+  padding: 10px 110px;
+  font-size: 15px;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
-  border-radius: 13px;
+  border-radius: 5px;
   box-shadow: 0 9px #999;
   color: #fff;
   background-color: #1a1c1b;
 
 }
-button:hover {background-color: #070707}
+button:hover {background-color: #070707;}
 
 button:active {
   background-color: #000000;
@@ -46,8 +46,8 @@ button:active {
   transform: translateY(5px);
 }
 
-background{
-    color: #ffffff
+background {
+    color: #ffffff;
 }
 
 div {
@@ -58,11 +58,18 @@ div {
 .right{
 	
 	width: 30%;
+    background-color:  	#F0F8FF;
+     border: 7px solid 	#F0F8FF ;
 	float: right;
 	top: 25%;
 	position: fixed;
 	height: auto;
 	left: 65%;
+
+    border-radius: 25px;
+	
+
+
 }
 
 .divide {
@@ -74,15 +81,22 @@ div {
 	width: 55%;
 	height: 35%;
 	position: fixed;
+
+	background-color:  	#F0F8FF;
+     border:7px solid 	#F0F8FF ;
+
 	top: 25%;
 	left: 5%;
+    border-radius: 25px;
 }
 .padding {padding:10 0 0 25;}
 .bottom{
 	width: 55%;
 	height: 35%;
 	position: fixed;
-	
+     border:7px solid 	#F0F8FF ;
+	background-color:  	#F0F8FF;
 	top: 65%;
 	left: 5%;
+    border-radius: 25px;
 }
