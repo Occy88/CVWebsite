@@ -10,6 +10,7 @@ app_name='home'
 
 urlpatterns = [
     path('', views.home, name='home'),
+    url(r'^ownfiles/$', views.ownfiles, name='ownfiles'),
     url(r'^group_list/$', views.group_list, name='group_list'),
     url(r'^group_register/$',views.group_register,name='group_register'),
     url(r'^group_list/(?P<id>\d+)/$', views.group_detail, name='group_detail'),

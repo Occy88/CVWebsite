@@ -2,32 +2,20 @@
 {% load staticfiles %}
 {% block head %}
 <title>Home</title>
-<link rel="stylesheet" type="text/css" href="{% static '/css/groups_Style.css' %}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="{% static '/css/Style.css' %}">
 {% endblock %}
 {%block body%}
         <!-- List of uploaded documents -->
-        {% if documents %}
-                <ul>
-                {% for document in documents %}
-                        <li><a href="{{ document.docfile.url }}">{{ document.docfile.name }}
-                        <img src="{{ document.docfile.url }}" alt="{{ document.docfile.name }}">
-                        </a></li>
-                {% endfor %}
-                </ul>
-        {% else %}
-                <p>No documents.</p>
-        {% endif %}
+        <div class="padding">
+        <h1>{{ user.username }}</h1>
+        <h3>My uploaded documents:</h3>
+                <p>Click a document to jump to the page!</p>
+        {% for d in document %}
+            {% if user in d.group.members.all or user.is_superuser %}
+                <a href= "{{d.group.get_absolute_urlf}}" class="btn btn-outline-dark" role="button">{{d.name}} <br>Group: {{d.group}}</a>
+            {% endif %}
+        {% endfor %}
+        </div>
 
-        <!-- Upload form. Note enctype attribute! -->
-        <form action="{% url 'home:list' %}" method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                <p>{{ form.non_field_errors }}</p>
-                <p>{{ form.docfile.label_tag }} </p>
-                <p>
-                        {{ form.docfile.errors }}
-                        {{ form.docfile }}
-                </p>
-                <p><input type="submit" value="Upload" /></p>
-        </form>
-
-{%endblock%}
+{% endblock %}
