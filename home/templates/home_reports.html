@@ -1,0 +1,30 @@
+{% extends 'home/templates/base.html' %}
+{% load staticfiles %}
+{% block head %}
+<title>Home</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="{% static '/css/Style.css' %}">
+{% endblock %}
+{%block body%}
+
+    <h2>Current User: All  <a href="clear" class="btn btn-outline-danger" role="button" >Clear All</a>
+        <div class="dropdown">
+  <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Select User
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+   <a class="dropdown-item" href="/home/reports">All</a>
+    {% for u in users %}
+      <a class="dropdown-item" href="/home/reports/{{ u.id }}">{{ u.username }}</a>
+    {% endfor %}
+  </div>
+</div>
+   </h2>
+     <div class="container-fluid">
+         <h2>Logs</h2>
+         {% for l in log  %}
+             <p>{{ l.user.username }}, {{ l.action }}  {{ l.name }} on: {{ l.time }}</p>
+         {% endfor %}
+
+      </div>
+{% endblock %}

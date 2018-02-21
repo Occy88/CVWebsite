@@ -10,6 +10,10 @@ app_name='home'
 
 urlpatterns = [
     path('', views.home, name='home'),
+    url(r'^reports/$', views.reports, name='reports'),
+    url(r'^reports/clear/$', views.reports_clear, name='reports_clear'),
+    url(r'^reports/(?P<id>\d+)/$', views.reports_specified, name='reports_specified'),
+    url(r'^reports/(?P<id>\d+)/clear/$', views.reports_specified_clear, name='reports_specified_clear'),
     url(r'^ownfiles/$', views.ownfiles, name='ownfiles'),
     url(r'^group_list/$', views.group_list, name='group_list'),
     url(r'^group_register/$',views.group_register,name='group_register'),
@@ -24,6 +28,6 @@ urlpatterns = [
     url(r'^group_list/(?P<id>\d+)/files/(?P<idf>\d+)/(?P<idc>\d+)/delete/$', views.group_detail_files_comment_delete, name='group_detail_files_comment_delete'),
     url(r'^group_list/(?P<id>\d+)/files/(?P<idf>\d+)/delete/$', views.group_detail_files_delete, name='group_detail_files_delete'),
     url(r'^group_list/(?P<id>\d+)/files/(?P<idf>\d+)/download/$', views.group_detail_files_download, name='group_detail_files_download'),
-    url(r'^clear/$', views.log_clear, name='log_clear'),
+
     url(r'^prompt/duplicate/$', views.prompt_duplicate, name = 'prompt_duplicate'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

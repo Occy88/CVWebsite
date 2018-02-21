@@ -30,8 +30,32 @@ def ownfiles(request):
 
     context = {'user': user, 'document':document, 'group':group}
     return render(
-        request, 'home/templates/ownfiles.html', context
+        request, 'home/templates/home_ownfiles.html', context
 
+    )
+#reports pages
+def reports(request):
+    user = request.user
+    if not user.is_superuser:
+        raise Http404
+
+    log=Log.objects.all()
+    users=User.objects.all()
+    context = {'user': user,'log':log,'users':users }
+    return render(
+        request, 'home/templates/home_reports.html', context
+    )
+def reports_specified(request,id=None):
+    user = request.user
+    if not user.is_superuser:
+        raise Http404
+    users = User.objects.all()
+    log = Log.objects.all()
+    cuser=get_object_or_404(User, id=id)
+    context = {'user': user,'log':log,'users':users,'cuser':cuser }
+
+    return render(
+        request, 'home/templates/home_reports_specified.html', context
     )
 
 #Group:
@@ -136,8 +160,7 @@ def group_register(request):
         form = GroupRegistrationForm()
     user = request.user
     return render(request, 'home/templates/home_groups_create.html', {'form': form,'user':user})
-def index(request):
-    return render('myapp/index.html')
+
 
 
 
@@ -205,6 +228,7 @@ def group_detail_files_upload(request,id=None):
             print("valid")
             instance = form.save(commit=False)
             instance.modifier = request.user.id
+            instance.creator=request.user.id
             instance.group = group
             instance.save()
             path = instance.docfile.path
@@ -333,13 +357,25 @@ def group_detail_files_comment_delete(request,id=None,idf=None,idc=None):
     return redirect(instanceF.get_absolute_url())
 
 #Log
-def log_clear(self):
+def reports_clear(request):
+    user = request.user
+    if not user.is_superuser:
+        raise Http404
+
     log= Log.objects.all()
     for l in log:
         l.delete()
-
-    return redirect('home:home')
-
+    return redirect('home:reports')
+def reports_specified_clear(request,id=None):
+    user = request.user
+    cuser=get_object_or_404(User,id=id)
+    if not user.is_superuser:
+        raise Http404
+    log= Log.objects.all()
+    for l in log:
+        if l.user == cuser:
+            l.delete()
+    return redirect('home:reports')
 #Duplicate Files
 def prompt_duplicate(request):
-    return render(request, 'home/templates/prompt_duplicate.html')
+    return render(request, 'home/templates/home_prompt_duplicate.html')
