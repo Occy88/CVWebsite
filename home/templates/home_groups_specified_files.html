@@ -1,67 +1,80 @@
 {% extends 'home/templates/base.html' %}
 {% load staticfiles %}
 {% block head %}
-<title>Groups list</title>
-<link rel="stylesheet" type="text/css" href="{% static '/css/groups_Style.css' %}">
+    <title>Groups list</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/groups_Style.css' %}">
 {% endblock %}
 {% block body %}
-<div class="container-fluid">
-    <h2>Group Files:</h2>
-    <a href="upload/" class="btn btn-secondary" role="button">Upload File</a>
-    <br>
-    <br>
     <div class="container-fluid">
+        <h2>Group Files:</h2>
+        <a href="upload/" class="btn btn-secondary" role="button">Upload File</a>
+        <br>
+        <br>
 
-            {% for d in document %}
-                {% if group == d.group %}
-                    <div class="container-fluid">
-                        <div class="card" style="width: 80rem;">
+        <div class="container-fluid">
+            <div class="row">
+                {% for d in document %}
+                    {% if group == d.group %}
+
+                        <div class="col-auto">
                             <div class="container-fluid">
+                                <div class="card bg-light ">
+                                    <div class="container-fluid">
+                                        <div class="card-block">
+                                            <h3 class="card-title ">{{ d.name }}&nbsp;
+                                                <a href="{{ d.id }}/delete/"
+                                                   class="btn btn-outline-danger"
+                                                   role="button">delete</a>
+                                                <a href="{{ d.id }}/download/" class="btn btn-outline-success"
+                                                   role="button">download</a>
+                                                <a href="{{ d.id }}/comment/" class="btn btn-outline-info"
+                                                   role="button">Add Comment</a></h3>
+                                            <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                                    id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false">
+                                                View Comments
+                                            </button>
+                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 
+                                                {% for c in comment %}
+                                                    {% if c.document == d %}
+                                                        <div class="card" style="width: 20rem;">
+                                                            <div class="card card-body">
+                                                                <h4 class="card-title">{{ c.title }} by {{ c.creator }}</h4>
+                                                                <p class="card-text">{{ c.comment }}</p>
+                                                                <h5>Comment Read By: </h5>
+                                                                {% for u in c.hasRead.all %}
+                                                                    <p class="card-text">{{ u.username }}</p>
+                                                                {% endfor %}
 
-                                <div class="row">
-
-                                     <div class="col-lg-5">
-                                         <div class="form-control"> <h4>File Name: {{d.filename }}</h4></div>
-                                         <div class="form-control"> <h4>Uploaded: {{d.time}} </h4></div>&nbsp;
-                                    </div>
-                                    <div class="col-10">
-                                        &nbsp;
-                                        <a href="{{d.id}}/delete/" class="btn btn-outline-danger" role="button">delete</a>
-                                        <a href="{{d.id}}/download/" class="btn btn-outline-success" role="button">download</a>
-
-                                    </div>
-
-                                </div>
-
-                                {% for c in comment %}
-                                    {% if d == c.document %}
-                                        <div class="card" style="width: 25rem;">
-                                            <div class="card card-body">
-                                                 <p class="card-text">{{c.comment}}</p>
-                                                <h5>Comment Read By: </h5>
-                                                {% for u in c.hasRead.all %}
-                                                    <p class="card-text">{{ u.username }}</p>
+                                                                <div class="flex-row">
+                                                                    <a href="{{ c.id }}/delete/" class="btn btn-danger"
+                                                                       role="button">Remove Comment</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    {% endif %}
                                                 {% endfor %}
 
-                                                <div class="flex-row">
-                                                    <a href="{{d.id}}/{{c.id}}/delete/" class="btn btn-outline-danger" role="button">delete Comment</a>
-                                                </div>
                                             </div>
                                         </div>
-                                    {% endif %}
-                                {% endfor %}
-                                <br>
-                                <a href="{{d.id}}/comment/" class="btn btn-secondary" role="button">Add Comment</a>
+
+
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                <br>
-                {% endif %}
-            {% endfor %}
+                        </div>
+                        <br>
 
+
+
+
+                    {% endif %}
+                {% endfor %}
+        </div>
 
     </div>
-</div>
+    </div>
 
 {% endblock %}

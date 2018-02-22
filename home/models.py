@@ -50,6 +50,7 @@ class GroupComment(models.Model):
     title = models.CharField(max_length=100)
     comment=models.CharField(max_length=500)
     hasRead = models.ManyToManyField(User)
+    creator =  models.CharField(max_length=50, default="")
     group=models.ForeignKey(Group, default=1,on_delete=models.CASCADE)
     def get_absolute_url(self):
         return reverse('home:group_detail_files',kwargs={'id':self.group.id})
@@ -57,6 +58,7 @@ class GroupComment(models.Model):
 class DocumentComment(models.Model):
     title=models.CharField(max_length=100)
     comment=models.CharField(max_length=500)
+    creator = models.CharField(max_length=50, default="")
     hasRead = models.ManyToManyField(User)
     document=models.ForeignKey(Document, default=1,on_delete=models.CASCADE)
     def get_absolute_url(self):

@@ -43,7 +43,7 @@
             {% if group == c.group %}
                 <div class="card" style="width: 20rem;">
                     <div class="card card-body">
-                        <h4 class="card-title">{{c.title}}</h4>
+                         <h4 class="card-title">{{ c.title }} by {{ c.creator }}</h4>
                         <p class="card-text">{{c.comment}}</p>
                         <h5>Comment Read By: </h5>
                         {% for u in c.hasRead.all %}

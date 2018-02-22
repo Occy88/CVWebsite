@@ -287,6 +287,7 @@ def group_detail_comment(request,id=None):
         if form.is_valid():
             instance= form.save(commit=False)
             instance.group=group
+            instance.creator=request.user.username
             instance.save()
             return redirect(group.get_absolute_url())
     else:
@@ -313,6 +314,7 @@ def group_detail_files_comment(request,id=None,idf=None):
         if form.is_valid():
             instance= form.save(commit=False)
             instance.document = document
+            instance.creator = request.user.username
             instance.document.modifier = request.user.id
             instance.save()
             return redirect(instance.get_absolute_url())
