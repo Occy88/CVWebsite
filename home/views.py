@@ -8,9 +8,10 @@ import os, hashlib
 from django.core.files import File
 from home.models import Document, Group, GroupComment, DocumentComment, Log
 from home.forms import DocumentForm, GroupRegistrationForm, GroupCommentForm, DocumentCommentForm
+#---------THESE ARE FUNCTIONS THAT TAKE CARE OF USER'S REQUEST USING FORMS, DATABASE MODELS AND HTML-------------
 
+# HOME/REPORTS/OWNFILES
 
-# home page:
 def home(request):
     user = request.user
     users = User.objects.all()
@@ -27,7 +28,6 @@ def home(request):
     )
 
 
-# My Files page
 def ownfiles(request):
     user = request.user
     document = Document.objects.all()
@@ -40,7 +40,6 @@ def ownfiles(request):
     )
 
 
-# reports pages
 def reports(request):
     user = request.user
     if not user.is_superuser:

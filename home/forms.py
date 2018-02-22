@@ -2,6 +2,9 @@ from django import forms
 from django.contrib.auth.models import User
 from home.models import Group,Document, GroupComment, DocumentComment
 
+
+#---------FORMS USED TO REQUEST INFORMATION FROM USER USING DATABASE MODELS------------
+
 class DocumentForm(forms.ModelForm):
     name = forms.CharField(label='Choose a name',max_length=50)
     docfile = forms.FileField(label='Select a file')
@@ -32,7 +35,6 @@ class DocumentCommentForm(forms.ModelForm):
         if commit:
             instance.save()
         return instance
-
 class GroupCommentForm(forms.ModelForm):
     title = forms.CharField(label='title', max_length=100)
     comment = forms.CharField(label='comment', max_length=100)

@@ -8,7 +8,7 @@ EXEMPT_URLS = [re.compile(settings.LOGIN_URL.lstrip('/'))]
 if hasattr(settings, 'LOGIN_EXEMPT_URLS'):
     EXEMPT_URLS += [re.compile(url) for url in settings.LOGIN_EXEMPT_URLS]
 
-
+#---PREVENT USER FROM ACCESSING UNWANTED PAGES IF NOT LOGGED IN
 class LoginRequiredMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response

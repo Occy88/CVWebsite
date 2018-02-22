@@ -12,7 +12,7 @@ from django.contrib.auth.forms import UserChangeForm, PasswordChangeForm
 from django.contrib.auth.models import User
 
 
-# Create your views here.
+# USER REGISTRATION VIEWS
 
 def home(request):
     return redirect(request, 'home:list')

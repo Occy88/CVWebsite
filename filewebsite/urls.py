@@ -18,10 +18,9 @@ from django.urls import include, path
 from django.conf.urls import url, include
 from filewebsite import views
 
+#----ADD ALL APP URL'S
 urlpatterns = [
     path('', views.login_redirect, name='login_redirect'),
-    # url(r'$', views.login_redirect, name='login_redirect'),
-
     path('admin/', admin.site.urls),
     path('account/', include('accounts.urls')),
     path('home/', include('home.urls'))

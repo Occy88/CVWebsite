@@ -7,6 +7,8 @@ from datetime import datetime
 import os
 
 
+# ----THIS ARE THE MODELS IN THE DATABASE--------
+
 class Group(models.Model):
     modifier = models.IntegerField(default=1)
     name = models.CharField(max_length=100, )
@@ -40,17 +42,18 @@ class Document(models.Model):
         return os.path.basename(self.docfile.name)
 
 
-def _delete_file(path):
-    """ Deletes file from filesystem. """
-    if os.path.isfile(path):
-        os.remove(path)
-
-
+# --REMOVE-FILE--FROM DATABASE ON DOCUMENT MODEL DELETE
 @receiver(models.signals.post_delete, sender=Document)
 def delete_file(sender, instance, *args, **kwargs):
     """ Deletes image files on `post_delete` """
     if instance.docfile:
         _delete_file(instance.docfile.path)
+
+
+def _delete_file(path):
+    """ Deletes file from filesystem. """
+    if os.path.isfile(path):
+        os.remove(path)
 
 
 class GroupComment(models.Model):
@@ -76,13 +79,15 @@ class DocumentComment(models.Model):
         return reverse('home:group_detail_files', kwargs={'id': id})
 
 
-# ---------------LOGS-----------------
 class Log(models.Model):
     user = models.ForeignKey(User, default=1, on_delete=models.CASCADE)
     group = models.IntegerField(default=0)
     action = models.CharField(max_length=30)
     name = models.CharField(max_length=100)
     time = models.DateTimeField(default=datetime.now)
+
+
+# ------------SIGNALS-FROM MODELS MAINLY FOR LOGGING ACTIVITY--------------------
 
 
 # ---GROUPS
