@@ -41,22 +41,26 @@ button:active {
   transform: translateY(5px);
 }
 
-div {
-	height: auto;
+background {
+    color: #ffffff;
+}
 
+.wrapper {
+    overflow-y: visible;
 }
 
 .right{
 	
 	width: 30%;
-    background-color:  	#F0F8FF;
-     border: 7px solid 	#F0F8FF ;
+    background-color:  	#F8F8FF;
+     border: 7px solid 	#F8F8FF ;
 	float: right;
-	top: 25%;
+	top: 20%;
 	position: fixed;
 	height: auto;
 	left: 65%;
     border-radius: 25px;
+    overflow: visible;
 	
 
 	
@@ -72,9 +76,9 @@ div {
 	width: 55%;
 	height: 35%;
 	position: fixed;
-	background-color:  	#F0F8FF;
-     border:7px solid 	#F0F8FF ;
-	top: 25%;
+	background-color:  	#F8F8FF;
+     border:7px solid 	#F8F8FF ;
+	top: 20%;
 	left: 5%;
     border-radius: 25px;
 }
@@ -83,9 +87,9 @@ div {
 	width: 55%;
 	height: 35%;
 	position: fixed;
-     border:7px solid 	#F0F8FF ;
-	background-color:  	#F0F8FF;
-	top: 65%;
+     border:7px solid 	#F8F8FF ;
+	background-color:  	#F8F8FF;
+	top: 60%;
 	left: 5%;
     border-radius: 25px;
 }

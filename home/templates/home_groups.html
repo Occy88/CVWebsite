@@ -7,25 +7,25 @@
 {%block body%}
 <div class="container-fluid">
     <h2>Groups:</h2>
-    <a href="{% url 'home:group_register' %}" class="btn btn-info" role="button">New Group</a>
+    <a href="{% url 'home:group_register' %}" class="btn btn-outline-success" role="button">New Group</a>
     <br>
     <br>
     <div class="container-fluid">
         {% for g in groups %}
             {% if user in g.members.all or user.is_superuser %}
                 <div class="container-fluid">
-                    <div class="card" style="width: 25rem;">
+                    <div class="card bg-light " style="width: 25rem;">
                         <div class="container-fluid">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <h3>group name:{{g.name}}</h3>
+                                    <h3>{{g.name}}</h3>
                                 </div>
                             </div>
                             <div class="flex-row">
                                 <table width = "100%">
                                     <tr>
                                         <td width="30%">
-                                <a href="{{g.id}}" class="btn btn-danger" role="button">group info</a>
+                                <a href="{{g.id}}" class="btn btn-outline-info" role="button">group info</a>
                                         </td>
                                         <td width = "70%">
                                             <div align="right" text-align="right">

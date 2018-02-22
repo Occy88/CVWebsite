@@ -1,35 +1,38 @@
 {% extends 'home/templates/base.html' %}
 {% load staticfiles %}
 {% block head %}
-<title>Home</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="{% static '/css/Style.css' %}">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/Style.css' %}">
 {% endblock %}
-{%block body%}
+{% block body %}
 
-        <!-- List of uploaded documents -->
-<div class="container-fluid">
+    <!-- List of uploaded documents -->
+    <div class="container-fluid">
 
-         <h2>Files:</h2>
-   <div class="row">
+        <h2>Files:</h2>
+        <div class="row">
 
-      {% for d in document %}
-      {% if d.creator == user.id %}
-      <div class="col-auto">
-         <div class="container-fluid">
-            <div class="card bg-light ">
-               <div class="container-fluid">
-                  <div class="card-block">
-                     <h3 class="card-title">{{ d.name }}&nbsp; <a href="{{ d.group.get_absolute_url }}files/" class="btn btn-outline-dark">view file</a></h3>
+            {% for d in document %}
+                {% if d.creator == user.id %}
+                    <div class="col-auto">
+                        <div class="container-fluid">
+                            <div class="card bg-light ">
+                                <div class="container-fluid">
+                                    <div class="card-block">
+                                        <h3 class="card-title">{{ d.name }}&nbsp; <a
+                                                href="{{ d.group.get_absolute_url }}files/"
+                                                class="btn btn-outline-dark">view file</a></h3>
 
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-      <br>
-      {% endif %}
-      {% endfor %}
-   </div>
-</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

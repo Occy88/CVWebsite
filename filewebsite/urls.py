@@ -20,10 +20,10 @@ from filewebsite import views
 
 urlpatterns = [
     path('', views.login_redirect, name='login_redirect'),
-   # url(r'$', views.login_redirect, name='login_redirect'),
+    # url(r'$', views.login_redirect, name='login_redirect'),
 
     path('admin/', admin.site.urls),
-    path('account/',include('accounts.urls')),
-    path('home/',include('home.urls'))
+    path('account/', include('accounts.urls')),
+    path('home/', include('home.urls'))
 
 ]

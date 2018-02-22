@@ -3,80 +3,94 @@
 {% extends 'home/templates/base.html' %}
 {% load staticfiles %}
 {% block head %}
-<title>Home</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="{% static '/css/Style.css' %}">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/Style.css' %}">
 {% endblock %}
-{%block body%}
-<!-- List of uploaded documents -->
-<div class="container">
-</div>
-<div class="container">
-<h1>{{ user.username }}</h1>
-<div class="divide">
-<div class="top">
-   <h2>Groups &nbsp; &nbsp; &nbsp; &nbsp;  &nbsp; &nbsp; <a href="{% url 'home:group_register' %}" class="btn btn-outline-success" role="button">Create</a>
-      <a href="{% url 'home:group_list' %}" class="btn btn-outline-info" role="button">View All</a></h2>
-   <br>
-   <div class="row">
-      {% for g in group %}
-      {% if user in g.members.all %}
-      <div class="col-auto">
-         <div class="container-fluid">
-            <div class="card bg-transparent">
-               <div class="container-fluid">
-                  <div class="card-block">
-                     <h3 class="card-title">{{ g.name }}</h3>
-                     <a href="{{ g.get_absolute_url }}" class="btn btn-outline-dark">view Group</a>
-                  </div>
-               </div>
+{% block body %}
+    <!-- List of uploaded documents -->
+    <div class="wrapper">
+        <div class="container">
+            <h1>{{ user.username }}</h1>
+
+            <div class="divide">
+                <div class="top">
+                    <h2>Groups &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="{% url 'home:group_register' %}"
+                                                                            class="btn btn-outline-success"
+                                                                            role="button">Create</a>
+                        <a href="{% url 'home:group_list' %}" class="btn btn-outline-info" role="button">View All</a>
+                    </h2>
+                    <br>
+
+                    <div class="row">
+                        {% for g in group %}
+                            {% if user in g.members.all %}
+                                <div class="col-auto">
+                                    <div class="container-fluid">
+                                        <div class="card bg-transparent">
+                                            <div class="container-fluid">
+                                                <div class="card-block">
+                                                    <h3 class="card-title">{{ g.name }}</h3>
+                                                    <a href="{{ g.get_absolute_url }}" class="btn btn-outline-dark">view
+                                                        Group</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                    <div class="bottom">
+                        <h2>My Files</h2>
+                        <div class="row">
+                            {% for d in document %}
+                                {% if d.creator == user.id %}
+                                    <div class="col-auto">
+                                        <div class="container-fluid">
+                                            <div class="card bg-transparent ">
+                                                <div class="container-fluid">
+                                                    <div class="card-block">
+                                                        <h3 class="card-title">{{ d.name }}&nbsp; <a
+                                                                href="{{ d.group.get_absolute_url }}files/"
+                                                                class="btn btn-outline-dark">view file</a>
+                                                        </h3>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <div class="divide">
+                        <div class="right" style="overflow: visible">
+
+                            <h2>Logs</h2>
+                            {% for l in log %}
+                                {% for g in group %}
+                                    {% if l.group == g.id %}
+                                        {% if user in g.members.all %}
+                                            <p>{{ l.user.username }}, {{ l.action }} {{ l.name }} on: {{ l.time }}</p>
+
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                </div>
             </div>
-         </div>
-      </div>
-      <br>
-      {% endif %}
-      {% endfor %}
-   </div>
-   <div class="bottom">
-         <h2>My Files</h2>
-   <div class="row">
-      {% for d in document %}
-      {% if d.creator == user.id %}
-      <div class="col-auto">
-         <div class="container-fluid">
-            <div class="card bg-transparent ">
-               <div class="container-fluid">
-                  <div class="card-block">
-                     <h3 class="card-title">{{ d.name }}&nbsp; <a href="{{ d.group.get_absolute_url }}files/" class="btn btn-outline-dark">view file</a>
-</h3>
+        </div>
+    </div>
 
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-      <br>
-      {% endif %}
-      {% endfor %}
-   </div>
-   </div>
 
-   <div class="divide">
-      <div class="right">
-         <h2>Logs</h2>
-         {% for l in log %}
-             {% for g in group %}
-                {% if l.group == g.id %}
-                 {% if user in g.members.all %}
-                     <p>{{ l.user.username }}, {{ l.action }}  {{ l.name }} on: {{ l.time }}</p>
-
-                 {% endif %}
-                 {% endif %}
-      {% endfor %}
-         {% endfor %}
-
-      </div>
-   </div>
-</div>
-{%endblock%}
+{% endblock %}
 

@@ -1,23 +1,23 @@
 {% extends 'accounts/templates/base.html' %}
 {% load staticfiles %}
 {% block head %}
-<title id="login_page_title">Login</title>
-<link rel="stylesheet" type="text/css" href="{% static '/css/Style.css' %}">
+    <title id="login_page_title">Login</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/Style.css' %}">
 
 {% endblock %}
 
 
 {% block body %}
 
-<div class="container"; align="center">
-<h1>
-  <span class="main">Welcome</span>
-</h1>
+    <div class="container" ; align="center">
+        <h1>
+            <span class="main">Welcome</span>
+        </h1>
 
-<form method="post">
-  {% csrf_token %}
-  {{form.as_p}}
-  <button type="submit">Login</button>
-</form>
-</div>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Login</button>
+        </form>
+    </div>
 {% endblock %}

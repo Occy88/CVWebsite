@@ -9,36 +9,42 @@ import os
 
 class Group(models.Model):
     modifier = models.IntegerField(default=1)
-    name=models.CharField(max_length=100,)
-    creator=models.IntegerField(default=1)
-    members=models.ManyToManyField(User, related_name='members')
-    isLeader=models.ManyToManyField(User, related_name='isLeader')
+    name = models.CharField(max_length=100, )
+    creator = models.IntegerField(default=1)
+    members = models.ManyToManyField(User, related_name='members')
+    isLeader = models.ManyToManyField(User, related_name='isLeader')
+
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
-        return reverse('home:group_detail',kwargs={'id':self.id})
+        return reverse('home:group_detail', kwargs={'id': self.id})
+
     def get_absolute_urlf(self):
-        return reverse('home:group_detail_files',kwargs={'id':self.id})
+        return reverse('home:group_detail_files', kwargs={'id': self.id})
+
 
 class Document(models.Model):
     modifier = models.IntegerField(default=1)
     name = models.CharField(max_length=50, default="")
-    group=models.ForeignKey(Group,default=1,on_delete=models.CASCADE)
-    docfile = models.FileField(upload_to='documents',null=True)
-    creator=models.IntegerField(default=1)
+    group = models.ForeignKey(Group, default=1, on_delete=models.CASCADE)
+    docfile = models.FileField(upload_to='documents', null=True)
+    creator = models.IntegerField(default=1)
     time = models.DateTimeField(default=datetime.now)
     filehash = models.CharField(max_length=100, default="")
 
     def get_absolute_url(self):
-        return reverse('home:group_detail_files',kwargs={'id':self.group.id})
+        return reverse('home:group_detail_files', kwargs={'id': self.group.id})
 
     def filename(self):
         return os.path.basename(self.docfile.name)
+
+
 def _delete_file(path):
-   """ Deletes file from filesystem. """
-   if os.path.isfile(path):
-       os.remove(path)
+    """ Deletes file from filesystem. """
+    if os.path.isfile(path):
+        os.remove(path)
+
 
 @receiver(models.signals.post_delete, sender=Document)
 def delete_file(sender, instance, *args, **kwargs):
@@ -46,34 +52,40 @@ def delete_file(sender, instance, *args, **kwargs):
     if instance.docfile:
         _delete_file(instance.docfile.path)
 
+
 class GroupComment(models.Model):
     title = models.CharField(max_length=100)
-    comment=models.CharField(max_length=500)
+    comment = models.CharField(max_length=500)
     hasRead = models.ManyToManyField(User)
-    creator =  models.CharField(max_length=50, default="")
-    group=models.ForeignKey(Group, default=1,on_delete=models.CASCADE)
+    creator = models.CharField(max_length=50, default="")
+    group = models.ForeignKey(Group, default=1, on_delete=models.CASCADE)
+
     def get_absolute_url(self):
-        return reverse('home:group_detail_files',kwargs={'id':self.group.id})
+        return reverse('home:group_detail_files', kwargs={'id': self.group.id})
+
 
 class DocumentComment(models.Model):
-    title=models.CharField(max_length=100)
-    comment=models.CharField(max_length=500)
+    title = models.CharField(max_length=100)
+    comment = models.CharField(max_length=500)
     creator = models.CharField(max_length=50, default="")
     hasRead = models.ManyToManyField(User)
-    document=models.ForeignKey(Document, default=1,on_delete=models.CASCADE)
+    document = models.ForeignKey(Document, default=1, on_delete=models.CASCADE)
+
     def get_absolute_url(self):
-        id=self.document.group.id
-        return reverse('home:group_detail_files',kwargs={'id':id})
+        id = self.document.group.id
+        return reverse('home:group_detail_files', kwargs={'id': id})
 
 
-#---------------LOGS-----------------
+# ---------------LOGS-----------------
 class Log(models.Model):
-    user=models.ForeignKey(User,default=1,on_delete=models.CASCADE)
-    group=models.IntegerField(default=0)
+    user = models.ForeignKey(User, default=1, on_delete=models.CASCADE)
+    group = models.IntegerField(default=0)
     action = models.CharField(max_length=30)
     name = models.CharField(max_length=100)
     time = models.DateTimeField(default=datetime.now)
-#---GROUPS
+
+
+# ---GROUPS
 @receiver(models.signals.post_save, sender=Group)
 def create_group(sender, instance, *args, **kwargs):
     log = Log()
@@ -84,6 +96,7 @@ def create_group(sender, instance, *args, **kwargs):
     log.user = user
     log.save()
 
+
 @receiver(models.signals.pre_delete, sender=Group)
 def delete_group(sender, instance, *args, **kwargs):
     log = Log()
@@ -93,7 +106,9 @@ def delete_group(sender, instance, *args, **kwargs):
     user = get_object_or_404(User, id=instance.modifier)
     log.user = user
     log.save()
-#---GROUP COMMENTS
+
+
+# ---GROUP COMMENTS
 @receiver(models.signals.pre_save, sender=GroupComment)
 def create_group_comment(sender, instance, *args, **kwargs):
     log = Log()
@@ -107,6 +122,7 @@ def create_group_comment(sender, instance, *args, **kwargs):
     log.user = user
     log.save()
 
+
 @receiver(models.signals.post_delete, sender=GroupComment)
 def delete_group_comment(sender, instance, *args, **kwargs):
     log = Log()
@@ -117,7 +133,8 @@ def delete_group_comment(sender, instance, *args, **kwargs):
     log.user = user
     log.save()
 
-#---DOCUMENTS
+
+# ---DOCUMENTS
 @receiver(models.signals.pre_save, sender=Document)
 def create_document(sender, instance, *args, **kwargs):
     log = Log()
@@ -131,6 +148,7 @@ def create_document(sender, instance, *args, **kwargs):
     log.user = user
     log.save()
 
+
 @receiver(models.signals.pre_delete, sender=Document)
 def delete_document(sender, instance, *args, **kwargs):
     log = Log()
@@ -142,7 +160,7 @@ def delete_document(sender, instance, *args, **kwargs):
     log.save()
 
 
-#---DOCUMENT COMMENTS
+# ---DOCUMENT COMMENTS
 @receiver(models.signals.pre_save, sender=DocumentComment)
 def create_document_comment(sender, instance, *args, **kwargs):
     log = Log()
@@ -156,6 +174,7 @@ def create_document_comment(sender, instance, *args, **kwargs):
     log.user = user
     log.save()
 
+
 @receiver(models.signals.post_delete, sender=DocumentComment)
 def delete_document_comment(sender, instance, *args, **kwargs):
     log = Log()
@@ -165,12 +184,3 @@ def delete_document_comment(sender, instance, *args, **kwargs):
     user = get_object_or_404(User, id=instance.document.modifier)
     log.user = user
     log.save()
-
-
-
-
-
-
-
-
-

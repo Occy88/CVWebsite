@@ -1,65 +1,70 @@
 {% extends 'home/templates/base.html' %}
 {% load staticfiles %}
 {% block head %}
-<title>Group</title>
-<link rel="stylesheet" type="text/css" href="{% static '/css/groups_Style.css' %}">
+    <title>Group</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/groups_Style.css' %}">
 {% endblock %}
 {% block body %}
-<div class="container-fluid">
-    <div class="form-control"> <h2>Group Name: {{group.name}} </h2> </div>
-    &nbsp;
 
+    <div class="form-control bg-light"><h2> {{ group.name }}: {% if user in group.isLeader.all or user.is_superuser %}
+        <a href="files/" class="btn btn-outline-info ml-5" role="button">View Files</a>
+        <a href="comment/" class="btn btn-outline-success mr-5" role="button">Add Comment</a>
+        <a href="edit/" class="btn btn-outline-info float-right " role="button">Edit Group</a>
+        <a href="delete/" class="btn btn-outline-danger float-right" role="button">Delete Group</a>
+    {% else %}
+        <a href="files/" class="btn btn-outline-info mr-5" role="button">View Files</a>
+        <a href="comment/" class="btn btn-outline-success mr-auto" role="button">Add Comment</a>
+    {% endif %}
+    </h2></div>
+
+<br>
     <div class="container-fluid">
 
-        <div class="row">
-            <div class="col-1">
-                {% if user in group.isLeader.all or user.is_superuser %}
-                    <a href="edit/" class="btn btn-secondary" role="button">Edit Group</a>
-                &nbsp;
-                    <a href="delete/" class="btn btn-secondary" role="button">Delete Group</a>
-                &nbsp;
-                    <a href="files/" class="btn btn-secondary" role="button">View Files</a>
-                &nbsp;
-                    <a href="comment/" class="btn btn-secondary" role="button">Add Comment</a>
 
-                {% else %}
-                    <a href="files/" class="btn btn-info" role="button">View Files</a>
-                &nbsp;
-                    <a href="comment/" class="btn btn-info" role="button">Add Comment</a>
-                {% endif %}
 
-            </div>
-            <div class="m-2">
-            <div class="col-lg-6">
-                <h3>Members:</h3>
-                {% for m in group.members.all %}
-                    <h4>{{m.username}} </h4>
+        <h3>Members:{% for m in group.members.all %}
+           {{ m.username }}
+        {% endfor %}</h3>
+<br>
+
+</div>
+
+        <div class="container-fluid">
+
+            <h2>Comments:</h2>
+        <br>
+            <div class="row">
+
+                {% for c in comment %}
+                    {% if group == c.group %}
+                        <div class="col-auto">
+                            <div class="container-fluid">
+                                <div class="card bg-light ">
+                                    <div class="container-fluid">
+                                        <div class="card-block">
+                                            <h4 class="card-title">{{ c.title }} &nbsp; By: {{ c.creator }}</h4>
+                                            <p class="card-text">{{ c.comment }}</p>
+                                            <h5>Comment Read By: </h5>
+                                            {% for u in c.hasRead.all %}
+                                                <p class="card-text">{{ u.username }}</p>
+                                            {% endfor %}
+
+                                            <div class="flex-row">
+                                                <a href="{{ c.id }}/delete/" class="btn btn-danger" role="button">Remove
+                                                    Comment</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                    {% endif %}
                 {% endfor %}
-            </div>
             </div>
         </div>
 
-        {% for c in comment %}
-            {% if group == c.group %}
-                <div class="card" style="width: 20rem;">
-                    <div class="card card-body">
-                         <h4 class="card-title">{{ c.title }} by {{ c.creator }}</h4>
-                        <p class="card-text">{{c.comment}}</p>
-                        <h5>Comment Read By: </h5>
-                        {% for u in c.hasRead.all %}
-                            <p class="card-text">{{ u.username }}</p>
-                        {% endfor %}
-
-                        <div class="flex-row">
-                            <a href="{{c.id}}/delete/" class="btn btn-danger" role="button">Remove Comment</a>
-                        </div>
-                    </div>
-                </div>
-            {% endif %}
-        {% endfor %}
     </div>
-
-
-</div>
 {% endblock %}
 </html>
