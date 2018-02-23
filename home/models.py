@@ -101,7 +101,7 @@ def create_group(sender, instance, *args, **kwargs):
     log.group = instance.id
 
     for u in instance.members.all():
-        send_mail('File Repo Site', 'You have been added to the group: ' + instance.name, 'info@gmail.com',[u.mail])
+        send_mail('File Repo Site', 'You have been added to the group: ' + instance.name, 'info@gmail.com',[u.email])
     user = get_object_or_404(User, id=instance.modifier)
     log.user = user
     log.save()
