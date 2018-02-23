@@ -114,7 +114,7 @@ def delete_group(sender, instance, *args, **kwargs):
     log.name = instance.name
     log.group = instance.id
     for u in instance.members.all():
-        send_mail('File Repo Site', 'The group  ' + instance.name+ ' that you were a member of has been deleted.', 'info@gmail.com',[u.mail])
+        send_mail('File Repo Site', 'The group  ' + instance.name+ ' that you were a member of has been deleted.', 'info@gmail.com',[u.email])
     user = get_object_or_404(User, id=instance.modifier)
     log.user = user
     log.save()
@@ -156,7 +156,7 @@ def create_document(sender, instance, *args, **kwargs):
         log.action = "added document:"
 
     for u in instance.group.members.all():
-        send_mail('File Repo Site', 'A document has been added to ' + instance.group.name, 'info@gmail.com',[u.mail])
+        send_mail('File Repo Site', 'A document has been added to ' + instance.group.name, 'info@gmail.com',[u.email])
     log.name = instance.name
     log.group = instance.group.id
     user = get_object_or_404(User, id=instance.modifier)
