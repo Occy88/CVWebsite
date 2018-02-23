@@ -4,6 +4,7 @@ from django.dispatch import receiver
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
 from datetime import datetime
+from django.contrib.auth.signals import user_logged_in, user_logged_out
 import os
 
 
@@ -187,5 +188,20 @@ def delete_document_comment(sender, instance, *args, **kwargs):
     log.name = instance.document.name
     log.group = instance.document.group.id
     user = get_object_or_404(User, id=instance.document.modifier)
+    log.user = user
+    log.save()
+
+@receiver(user_logged_in)
+def user_login(sender, user,request, *args, **kwargs):
+    log = Log()
+    log.action = "user logged in :"
+    log.name = user.username
+    log.user = user
+    log.save()
+@receiver(user_logged_out)
+def user_logout(sender, user,request, *args, **kwargs):
+    log = Log()
+    log.action = "user logged out :"
+    log.name = user.username
     log.user = user
     log.save()
