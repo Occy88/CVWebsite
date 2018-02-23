@@ -4,6 +4,7 @@ from django.dispatch import receiver
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
 from datetime import datetime
+from django.core.mail import send_mail, send_mass_mail
 from django.contrib.auth.signals import user_logged_in, user_logged_out
 import os
 
@@ -98,6 +99,9 @@ def create_group(sender, instance, *args, **kwargs):
     log.action = "created/edited group"
     log.name = instance.name
     log.group = instance.id
+
+    for u in instance.members.all():
+        send_mail('File Repo Site', 'You have been added to the group: ' + instance.name, 'info@gmail.com',[u.mail])
     user = get_object_or_404(User, id=instance.modifier)
     log.user = user
     log.save()
@@ -109,6 +113,8 @@ def delete_group(sender, instance, *args, **kwargs):
     log.action = "deleted group"
     log.name = instance.name
     log.group = instance.id
+    for u in instance.members.all():
+        send_mail('File Repo Site', 'The group  ' + instance.name+ ' that you were a member of has been deleted.', 'info@gmail.com',[u.mail])
     user = get_object_or_404(User, id=instance.modifier)
     log.user = user
     log.save()
@@ -148,6 +154,9 @@ def create_document(sender, instance, *args, **kwargs):
         log.action = "edited document:"
     else:
         log.action = "added document:"
+
+    for u in instance.group.members.all():
+        send_mail('File Repo Site', 'A document has been added to ' + instance.group.name, 'info@gmail.com',[u.mail])
     log.name = instance.name
     log.group = instance.group.id
     user = get_object_or_404(User, id=instance.modifier)
@@ -176,6 +185,7 @@ def create_document_comment(sender, instance, *args, **kwargs):
         log.action = "added comment to:"
     log.name = instance.document.name
     log.group = instance.document.group.id
+
     user = get_object_or_404(User, id=instance.document.modifier)
     log.user = user
     log.save()
@@ -191,15 +201,19 @@ def delete_document_comment(sender, instance, *args, **kwargs):
     log.user = user
     log.save()
 
+
+# -----LOG-IN/OUT---
 @receiver(user_logged_in)
-def user_login(sender, user,request, *args, **kwargs):
+def user_login(sender, user, request, *args, **kwargs):
     log = Log()
     log.action = "user logged in :"
     log.name = user.username
     log.user = user
     log.save()
+
+
 @receiver(user_logged_out)
-def user_logout(sender, user,request, *args, **kwargs):
+def user_logout(sender, user, request, *args, **kwargs):
     log = Log()
     log.action = "user logged out :"
     log.name = user.username
