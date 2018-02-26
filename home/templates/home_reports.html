@@ -38,7 +38,9 @@
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="/home/reports">Select</a>
                 {% for g in groups %}
+                    {% if user in g.members.all %}
                     <a class="dropdown-item" href="/home/reports/groups/{{ g.id }}">{{ g.name }}</a>
+                    {% endif %}
                 {% endfor %}
             </div>
         </div>
