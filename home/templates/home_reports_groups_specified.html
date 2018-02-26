@@ -1,0 +1,38 @@
+{% extends 'home/templates/base.html' %}
+{% load staticfiles %}
+{% block head %}
+    <title>Home</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/Style.css' %}">
+{% endblock %}
+
+{% block body %}
+    <h2>Current Group: {{ group.name }}</h2>
+  <div class="dropdown">
+            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Select Group
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="/home/reports">Select</a>
+                {% for g in groups %}
+                    <a class="dropdown-item" href="/home/reports/groups/{{ g.id }}">{{ g.name }}</a>
+                {% endfor %}
+            </div>
+        </div>
+     <div class="container-fluid">
+        <h2>Logs</h2>
+        {% for l in log %}
+
+                {% if l.group == group.id %}
+
+                        <p>{{ l.user.username }}, {{ l.action }} {{ l.name }} on: {{ l.time }}</p>
+
+                {% endif %}
+
+
+        {% endfor %}
+
+    </div>
+{% endblock %}

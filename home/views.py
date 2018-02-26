@@ -48,7 +48,8 @@ def reports(request):
     log = Log.objects.all()
     log = reversed(log)
     users = User.objects.all()
-    context = {'user': user, 'log': log, 'users': users}
+    groups=Group.objects.all()
+    context = {'user': user, 'log': log, 'users': users,'groups':groups}
     return render(
         request, 'home/templates/home_reports.html', context
     )
@@ -67,7 +68,19 @@ def reports_specified(request, id=None):
     return render(
         request, 'home/templates/home_reports_specified.html', context
     )
-
+def reports_groups_specified(request, idc=None):
+    user = request.user
+    if not user.is_superuser:
+        raise Http404
+    users = User.objects.all()
+    log = Log.objects.all()
+    group=get_object_or_404(Group,id=idc)
+    log = reversed(log)
+    groups=Group.objects.all()
+    context = {'user': user, 'log': log, 'users': users, 'group':group,'groups':groups}
+    return render(
+        request, 'home/templates/home_reports_groups_specified.html', context
+    )
 
 # Group:
 def group_list(request):

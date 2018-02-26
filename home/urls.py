@@ -14,6 +14,7 @@ urlpatterns = [
                   url(r'^reports/$', views.reports, name='reports'),
                   url(r'^reports/clear/$', views.reports_clear, name='reports_clear'),
                   url(r'^reports/(?P<id>\d+)/$', views.reports_specified, name='reports_specified'),
+                  url(r'^reports/groups/(?P<idc>\d+)/$', views.reports_groups_specified, name='reports_groups_specified'),
                   url(r'^reports/(?P<id>\d+)/clear/$', views.reports_specified_clear, name='reports_specified_clear'),
                   url(r'^ownfiles/$', views.ownfiles, name='ownfiles'),
                   url(r'^group_list/$', views.group_list, name='group_list'),
