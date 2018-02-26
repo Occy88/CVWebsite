@@ -2,6 +2,7 @@
 {% load staticfiles %}
 {% block head %}
     <title>Home</title>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static '/css/Style.css' %}">
@@ -39,7 +40,7 @@
                 <a class="dropdown-item" href="/home/reports">Select</a>
                 {% for g in groups %}
                     {% if user in g.members.all %}
-                    <a class="dropdown-item" href="/home/reports/groups/{{ g.id }}">{{ g.name }}</a>
+                        <a class="dropdown-item" href="/home/reports/groups/{{ g.id }}">{{ g.name }}</a>
                     {% endif %}
                 {% endfor %}
             </div>
