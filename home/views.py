@@ -42,8 +42,7 @@ def ownfiles(request):
 
 def reports(request):
     user = request.user
-    if not user.is_superuser:
-        raise Http404
+    
 
     log = Log.objects.all()
     log = reversed(log)
@@ -57,8 +56,7 @@ def reports(request):
 
 def reports_specified(request, id=None):
     user = request.user
-    if not user.is_superuser:
-        raise Http404
+
     users = User.objects.all()
     log = Log.objects.all()
     log = reversed(log)
@@ -70,8 +68,7 @@ def reports_specified(request, id=None):
     )
 def reports_groups_specified(request, idc=None):
     user = request.user
-    if not user.is_superuser:
-        raise Http404
+
     users = User.objects.all()
     log = Log.objects.all()
     group=get_object_or_404(Group,id=idc)
