@@ -42,7 +42,6 @@ def ownfiles(request):
 
 def reports(request):
     user = request.user
-    
 
     log = Log.objects.all()
     log = reversed(log)
@@ -67,8 +66,10 @@ def reports_specified(request, id=None):
         request, 'home/templates/home_reports_specified.html', context
     )
 def reports_groups_specified(request, idc=None):
+    group = get_object_or_404(Group, id=idc)
     user = request.user
-
+    if user not in group.members.all():
+        raise Http404
     users = User.objects.all()
     log = Log.objects.all()
     group=get_object_or_404(Group,id=idc)
