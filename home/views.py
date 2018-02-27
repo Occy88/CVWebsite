@@ -82,10 +82,10 @@ def reports_groups_specified(request, idc=None):
 
 # Group:
 def group_list(request):
-    groups = Group.objects.all()
+    group = Group.objects.all()
 
     user = request.user
-    context = {'groups': groups, 'user': user}
+    context = {'group': group, 'user': user}
     return render(
         request, 'home/templates/home_groups.html', context
     )
