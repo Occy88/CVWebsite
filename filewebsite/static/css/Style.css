@@ -20,19 +20,7 @@ Username{
 }
 
 
-button {
-  display: inline-block;
-  padding: 5px 25px;
-  font-size: auto;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-  border-radius: 4px;
-  box-shadow: 0 9px #999;
-  color: #fff;
-  background-color: #1a1c1b;
 
-}
 button:hover {background-color: #070707;}
 
 button:active {
