@@ -39,7 +39,7 @@
 
     {% else %}
         <a href="{% url 'accounts:register' %}" class="btn btn-dark  ml-auto mr-3 " role="button">Register</a>
-        <a href="{% url 'accounts:change_password' %}" class="btn btn-dark  mr-3 " role="button">Forgot Password</a>
+        <a href="{% url '/account/change-password/' %}" class="btn btn-dark  mr-3 " role="button">Forgot Password</a>
         <a href="{% url 'accounts:login' %}" class="btn btn-dark  mr-3 " role="button">Login</a>
     {% endif %}
     <!-- Links -->
