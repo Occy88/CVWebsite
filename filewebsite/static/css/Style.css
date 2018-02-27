@@ -22,12 +22,12 @@ Username{
 
 button {
   display: inline-block;
-  padding: 25px 25px;
-  font-size: 24px;
+  padding: 5px 25px;
+  font-size: auto;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
-  border-radius: 13px;
+  border-radius: 4px;
   box-shadow: 0 9px #999;
   color: #fff;
   background-color: #1a1c1b;

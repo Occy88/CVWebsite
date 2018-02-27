@@ -1,54 +1,36 @@
 {% extends 'home/templates/base.html' %}
 {% load staticfiles %}
 {% block head %}
-<link rel="stylesheet" type="text/css" href="{% static '/css/groups_Style.css' %}">
-<title>Groups list</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/groups_Style.css' %}">
+    <title>Groups list</title>
 {% endblock %}
-{%block body%}
-<div class="container-fluid">
-    <h2>Groups:</h2>
-    <a href="{% url 'home:group_register' %}" class="btn btn-outline-success" role="button">New Group</a>
-    <br>
-    <br>
+{% block body %}
     <div class="container-fluid">
-        {% for g in groups %}
-            {% if user in g.members.all or user.is_superuser %}
-                <div class="container-fluid">
-                    <div class="card bg-light " style="width: 25rem;">
+        <h2>Groups:</h2>
+        <a href="{% url 'home:group_register' %}" class="btn btn-outline-success" role="button">New Group</a>
+        <br>
+        <br>
+        <div class="row">
+            {% for g in group %}
+                {% if user in g.members.all %}
+                    <div class="col-auto">
                         <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <h3>{{g.name}}</h3>
+                            <div class="card bg-transparent">
+                                <div class="container-fluid">
+                                    <div class="card-block">
+                                        <h3 class="card-title">{{ g.name }}</h3>
+                                        <a href="{{ g.get_absolute_url }}" class="btn btn-outline-dark">view
+                                            Group</a>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="flex-row">
-                                <table width = "100%">
-                                    <tr>
-                                        <td width="30%">
-                                <a href="{{g.id}}" class="btn btn-outline-info" role="button">group info</a>
-                                        </td>
-                                        <td width = "70%">
-                                            <div align="right" text-align="right">
-                            {%for m in g.members.all%}
-                                <h5 class="card-columns">{{m.username}}</h5>
-                            {% endfor %}
-                            </div>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <br>
-
-
                         </div>
-
                     </div>
-                </div>
-            {% endif %}
-    </br>
-        {% endfor %}
+                    <br>
+                {% endif %}
+            {% endfor %}
+        </div>
     </div>
-</div>
 
 
-{%endblock%}
+{% endblock %}
